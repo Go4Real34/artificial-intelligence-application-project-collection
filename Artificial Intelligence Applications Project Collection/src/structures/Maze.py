@@ -4,6 +4,9 @@ class Maze:
         file_content_lines = self.split_file_content_by_lines(file_content)
         self.width, self.height = self.get_maze_width_and_height(file_content_lines)
         self.start, self.goal, self.walls = self.get_maze_properties(file_content_lines)
+        self.solution = None
+        
+        return
     
     def read_and_save_file(self, file_name):
         with open(file_name) as file:
