@@ -4,4 +4,8 @@ class Queue:
         
         return
     
+    def push(self, node):
+        self.frontier.append(node)
+        
+        return
     
