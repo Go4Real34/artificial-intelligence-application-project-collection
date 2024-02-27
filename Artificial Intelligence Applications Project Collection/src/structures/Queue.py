@@ -9,3 +9,6 @@ class Queue:
         
         return
     
+    def is_empty(self):
+        return len(self.frontier) == 0
+    
