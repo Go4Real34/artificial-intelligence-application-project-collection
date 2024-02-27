@@ -21,3 +21,6 @@ class Queue:
             self.frontier = self.frontier[1:]
             return node
     
+    def does_contain_state(self, state):
+        return any(node.state == state for node in self.frontier)
+    
