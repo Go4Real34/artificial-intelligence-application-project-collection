@@ -24,6 +24,11 @@ class Maze:
                 
         return available_actions
     
+    def set_solution(self, solution):
+        self.solution = solution
+        
+        return
+    
     def print_maze(self):
         print()
         for rowIndex, rowValue in enumerate(self.walls):
