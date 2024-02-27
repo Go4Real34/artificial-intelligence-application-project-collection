@@ -26,6 +26,7 @@
     <Compile Include="src\bfs_dfs_astar\BFS.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\bfs_dfs_astar\DFS.py" />
     <Compile Include="src\bfs_dfs_astar\__init__.py">
       <SubType>Code</SubType>
     </Compile>
