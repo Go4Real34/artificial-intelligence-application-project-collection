@@ -8,6 +8,22 @@ class Maze:
         
         return
     
+    def get_available_actions(self, state):
+        row, column = state
+        neighbors = [
+            ("up", (row - 1, column)),
+            ("down", (row + 1, column)),
+            ("left", (row, column - 1)),
+            ("right", (row, column + 1))
+        ]
+        
+        available_actions = []
+        for action, (r, c) in neighbors:
+            if (0 <= r < self.height) and (0 <= c < self.width) and (not self.walls[r][c]):
+                available_actions.append((action, (r, c)))
+                
+        return available_actions
+    
     def read_and_save_file(self, file_name):
         with open(file_name) as file:
             file_content = file.read().upper()
