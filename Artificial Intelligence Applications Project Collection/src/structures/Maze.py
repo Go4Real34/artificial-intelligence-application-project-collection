@@ -1,6 +1,6 @@
 class Maze:
     def __init__(self, file_name):
-        file_content = self.read_and_save_file_content(file_name)
+        file_content = self.read_and_save_file(file_name)
         file_content_lines = self.split_file_content_by_lines(file_content)
         self.width, self.height = self.get_maze_width_and_height(file_content_lines)
         self.start, self.goal, self.walls = self.get_maze_properties(file_content_lines)
@@ -30,21 +30,23 @@ class Maze:
         return
     
     def print_maze(self):
+        maze_solution = self.solution[1] if self.solution is not None else None
+
         print()
+        
         for rowIndex, rowValue in enumerate(self.walls):
             for columnIndex, columnValue in enumerate(rowValue):
-                if columnValue:
-                    print("█", end="")
-                
-                elif (rowIndex, columnIndex) == self.start:
+                if (rowIndex, columnIndex) == self.start:
                     print("A", end="")
                     
                 elif (rowIndex, columnIndex) == self.goal:
                     print("B", end="")
                     
-                elif self.solution is not None and (rowIndex, columnIndex) in solution:
+                elif self.solution is not None and (rowIndex, columnIndex) in maze_solution:
                     print("*", end="")
                     
+                elif columnValue:
+                    print("█", end="")
                 else:
                     print(" ", end="")
             
@@ -78,25 +80,27 @@ class Maze:
     def get_maze_properties(self, file_content_lines):
         walls = []
         for row in range(self.height):
-            row = []
+            current_row = []
             for column in range(self.width):
                 try:
                     if file_content_lines[row][column] == "A":
                         start = (row, column)
+                        current_row.append(False)
                         
                     elif file_content_lines[row][column] == "B":
                         goal = (row, column)
+                        current_row.append(False)
                         
                     elif file_content_lines[row][column] == " ":
-                        row.append(False)
+                        current_row.append(False)
                         
                     else:
-                        row.append(True)
+                        current_row.append(True)
                         
                 except IndexError:
-                    row.append(False)
+                    current_row.append(False)
                     
-            walls.append(row)
+            walls.append(current_row)
             
         return start, goal, walls
     

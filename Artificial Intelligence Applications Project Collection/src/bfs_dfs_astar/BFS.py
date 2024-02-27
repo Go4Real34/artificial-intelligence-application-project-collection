@@ -6,18 +6,18 @@ class BFS:
         self.number_of_explored_nodes = 0
         self.explored_nodes = set()
         
-        self.frontier = Queue()
+        self.queue = Queue()
         start = Node(self.maze.start, None, None)
-        self.frontier.push(start)
+        self.queue.push(start)
         
         return
     
     def solve(self):
         while True:
-            if self.frontier.is_empty():
+            if self.queue.is_empty():
                 raise Exception("Maze is invalid. No solution exists.")
             
-            node = self.frontier.pop()
+            node = self.queue.pop()
             self.number_of_explored_nodes += 1
             
             if node.state == self.maze.goal:
@@ -35,9 +35,9 @@ class BFS:
             self.explored_nodes.add(node.state)
             
             for action, state in self.maze.get_available_actions(node.state):
-                if (not self.frontier.does_contain_state(state)) and (state not in self.explored_nodes):
+                if (not self.queue.does_contain_state(state)) and (state not in self.explored_nodes):
                     child = Node(state, node, action)
-                    self.frontier.push(child)
+                    self.queue.push(child)
                     
         return
     
