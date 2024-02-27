@@ -1,4 +1,7 @@
 class Queue:
     def __init__(self):
-        pass
+        self.frontier = []
+        
+        return
+    
     
