@@ -24,6 +24,31 @@ class Maze:
                 
         return available_actions
     
+    def print_maze(self):
+        print()
+        for rowIndex, rowValue in enumerate(self.walls):
+            for columnIndex, columnValue in enumerate(rowValue):
+                if columnValue:
+                    print("█", end="")
+                
+                elif (rowIndex, columnIndex) == self.start:
+                    print("A", end="")
+                    
+                elif (rowIndex, columnIndex) == self.goal:
+                    print("B", end="")
+                    
+                elif self.solution is not None and (rowIndex, columnIndex) in solution:
+                    print("*", end="")
+                    
+                else:
+                    print(" ", end="")
+            
+            print()
+        
+        print()
+        
+        return
+    
     def read_and_save_file(self, file_name):
         with open(file_name) as file:
             file_content = file.read().upper()
