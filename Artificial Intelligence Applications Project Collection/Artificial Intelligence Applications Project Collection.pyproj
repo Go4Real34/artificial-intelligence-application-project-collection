@@ -39,6 +39,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\structures\Stack.py" />
+    <Compile Include="src\structures\TicTacToe.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\structures\__init__.py">
       <SubType>Code</SubType>
     </Compile>
