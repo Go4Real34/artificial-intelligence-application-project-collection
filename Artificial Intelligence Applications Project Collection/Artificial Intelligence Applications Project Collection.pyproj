@@ -52,6 +52,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\tests\bfs_dfs_astar_test_main.py" />
+    <Compile Include="src\tests\minimax_agent_test_main.py" />
     <Compile Include="src\tests\__init__.py">
       <SubType>Code</SubType>
     </Compile>
