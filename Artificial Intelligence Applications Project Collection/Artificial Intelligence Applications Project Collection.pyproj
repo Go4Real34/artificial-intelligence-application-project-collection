@@ -23,6 +23,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.py" />
+    <Compile Include="src\bfs_dfs_astar\ASTAR.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\bfs_dfs_astar\BFS.py">
       <SubType>Code</SubType>
     </Compile>
