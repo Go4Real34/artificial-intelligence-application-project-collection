@@ -12,3 +12,6 @@ class ASTAR:
         
         return
     
+    def g_n(self, cost):
+        return cost + 1
+    
