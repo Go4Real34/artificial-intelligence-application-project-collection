@@ -15,3 +15,8 @@ class ASTAR:
     def g_n(self, cost):
         return cost + 1
     
+    def h_n(self, state):
+        goal_row, goal_column = self.maze.goal
+        row, column = state
+        return abs(goal_row - row) + abs(goal_column - column)
+    
