@@ -33,6 +33,12 @@
     <Compile Include="src\bfs_dfs_astar\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\minimax_agent\MINIMAX.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\minimax_agent\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\structures\Maze.py" />
     <Compile Include="src\structures\Node.py" />
     <Compile Include="src\structures\Queue.py">
@@ -49,6 +55,7 @@
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\bfs_dfs_astar\" />
+    <Folder Include="src\minimax_agent\" />
     <Folder Include="src\structures\" />
   </ItemGroup>
   <ItemGroup>
