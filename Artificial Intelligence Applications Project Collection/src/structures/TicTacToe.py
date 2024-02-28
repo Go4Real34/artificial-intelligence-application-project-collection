@@ -23,13 +23,12 @@ class TicTacToe:
         return
     
     def print_board(self):
+        print("\nCurrent Board:\n")
         for row_index, row in enumerate(self.board):
             print(" ", end='')
             print(' | '.join(row))
             if row_index != 2:
                 print('-----------')
-                
-        print("\n" * 3, end='')
         
         return
     
