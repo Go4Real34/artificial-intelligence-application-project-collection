@@ -35,7 +35,7 @@ class BFS:
             self.explored_nodes.add(node.state)
             
             for action, state in self.maze.get_available_actions(node.state):
-                if (not self.queue.does_contain_state(state)) and (state not in self.explored_nodes):
+                if (not self.queue.does_contain_state_check_for_bfs_and_dfs(state)) and (state not in self.explored_nodes):
                     child = Node(state, node, action)
                     self.queue.push(child)
                     

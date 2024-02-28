@@ -21,6 +21,9 @@ class Queue:
             self.frontier = self.frontier[1:]
             return node
     
-    def does_contain_state(self, state):
+    def does_contain_state_check_for_bfs_and_dfs(self, state):
         return any(node.state == state for node in self.frontier)
+    
+    def does_contain_state_check_for_astar(self, state):
+        return any(node[0].state == state for node in self.frontier)
     
