@@ -20,3 +20,7 @@ class ASTAR:
         row, column = state
         return abs(goal_row - row) + abs(goal_column - column)
     
+    def gn_plus_hn(self, node_with_cost):
+        node, cost = node_with_cost
+        return (self.g_n(cost) + self.h_n(node.state))
+    
