@@ -5,7 +5,7 @@ def minimax_agent_test():
     game = TicTacToe()
     
     try:
-        player = input("Which player do you want to be? (X or O): ").rstrip().lstrip().upper()[0]
+        player = input("Which player do you want to be? [First character will be saved as answer!] (X or O): ").rstrip().lstrip().upper()[0]
     
     except IndexError:
         print('Empty input on player selection.')
@@ -17,18 +17,18 @@ def minimax_agent_test():
         
     else:
         try:
-            first_or_second = input("Do you want to go first or second? (f or s): ").rstrip().lstrip().lower()[0]
+            first_or_second = input("Do you want to go first or second? [First character will be saved as answer!] (F or S): ").rstrip().lstrip().upper()[0]
             
         except IndexError:
             print('Empty input on order selection.')
             exit(1)
             
-        if first_or_second != 'f' and first_or_second != 's':
+        if first_or_second != 'F' and first_or_second != 'S':
             print('Non-existent order selection.')
             exit(1)
             
         else:
-            if first_or_second == 'f':
+            if first_or_second == 'F':
                 game.current_player = player
             else:
                 game.current_player = 'X' if player == 'O' else 'O'
@@ -51,7 +51,7 @@ def minimax_agent_test():
         if game.current_player == player:
             print("\nPlayer's turn.\n")
             try:
-                position_input = input('Enter row and column with one space: ').rstrip().lstrip().split(" ")
+                position_input = input('Enter row and column with one space [Ex: 1 1]: ').rstrip().lstrip().split(" ")
                 
             except IndexError:
                 print("Empty input on position selection.")
@@ -69,6 +69,10 @@ def minimax_agent_test():
             
             except ValueError:
                 print("Invalid row and column type.")
+                exit(1)
+                
+            except IndexError:
+                print("Missing row or column input.")
                 exit(1)
                 
             game.next_turn((row, column))
