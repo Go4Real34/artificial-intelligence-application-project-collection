@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>Artificial Intelligence Applications Project Collection</Name>
     <RootNamespace>Artificial Intelligence Applications Project Collection</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.12</InterpreterId>
+    <InterpreterId>MSBuild|venv|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,9 +64,45 @@
     <Folder Include="src\structures\" />
     <Folder Include="src\tests\" />
     <Folder Include="src\tests\mazes\" />
+    <Folder Include="src\tests\mazes\solutions\" />
+    <Folder Include="src\tests\mazes\solutions\big_maze\" />
+    <Folder Include="src\tests\mazes\solutions\small_test_maze1\" />
+    <Folder Include="src\tests\mazes\solutions\small_test_maze2\" />
+    <Folder Include="src\tests\mazes\solutions\small_test_maze3\" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="Global|PythonCore|3.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="venv\">
+      <Id>venv</Id>
+      <Version>3.11</Version>
+      <Description>venv (Python 3.11 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="requirements.txt" />
+    <Content Include="src\tests\mazes\big_maze.txt" />
+    <Content Include="src\tests\mazes\small_test_maze1.txt" />
+    <Content Include="src\tests\mazes\small_test_maze2.txt" />
+    <Content Include="src\tests\mazes\small_test_maze3.txt" />
+    <Content Include="src\tests\mazes\solutions\big_maze\big_maze_txt_with_astar.png" />
+    <Content Include="src\tests\mazes\solutions\big_maze\big_maze_txt_with_bfs.png" />
+    <Content Include="src\tests\mazes\solutions\big_maze\big_maze_txt_with_dfs.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze1\small_test_maze1_txt_with_astar.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze1\small_test_maze1_txt_with_bfs.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze1\small_test_maze1_txt_with_dfs.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze2\small_test_maze2_txt_with_astar.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze2\small_test_maze2_txt_with_bfs.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze2\small_test_maze2_txt_with_dfs.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze3\small_test_maze3_txt_with_astar.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze3\small_test_maze3_txt_with_bfs.png" />
+    <Content Include="src\tests\mazes\solutions\small_test_maze3\small_test_maze3_txt_with_dfs.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
