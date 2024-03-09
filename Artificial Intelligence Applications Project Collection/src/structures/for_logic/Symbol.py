@@ -14,3 +14,16 @@ class Symbol(Sentence):
     def __repr__(self):
         return self.name
     
+    def symbols(self):
+        return {self.name}
+    
+    def evaluate(self, model):
+        try:
+            return bool(model[self.name])
+        
+        except KeyError:
+            raise Exception(f"Variable {self.name} not in model.")
+            
+    def formula(self):
+        return self.name
+    
