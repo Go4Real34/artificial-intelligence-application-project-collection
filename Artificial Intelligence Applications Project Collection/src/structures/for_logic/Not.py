@@ -15,3 +15,12 @@ class Not(Sentence):
     def __repr__(self):
         return f"Not({self.operand})"
     
+    def evaluate(self, model):
+        return not self.operand.evaluate(model)
+    
+    def formula(self):
+        return '¬' + Sentence.paranthesize(self.operand.formula())
+    
+    def symbols(self):
+        return self.operand.symbols()
+    
