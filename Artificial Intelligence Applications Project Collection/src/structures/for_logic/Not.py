@@ -24,3 +24,8 @@ class Not(Sentence):
     def symbols(self):
         return self.operand.symbols()
     
+    def modify(self, new_operand):
+        Sentence.validate(new_operand)
+        self.operand = new_operand
+        return
+    

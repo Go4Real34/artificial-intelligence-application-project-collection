@@ -30,3 +30,11 @@ class Biconditional(Sentence):
     def symbols(self):
         return set.union(self.left.symbols(), self.right.symbols())
     
+    def modify(self, new_left, new_right):
+        Sentence.validate(new_left)
+        self.left = new_left
+        
+        Sentence.validate(new_right)
+        self.right = new_right
+        return
+    

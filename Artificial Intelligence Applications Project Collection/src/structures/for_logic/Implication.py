@@ -30,3 +30,11 @@ class Implication(Sentence):
     def symbols(self):
         return set.union(self.antecedent.symbols(), self.consequent.symbols())
     
+    def modify(self, new_antecedent, new_consequent):
+        Sentence.validate(new_antecedent)
+        self.antecedent = new_antecedent
+        
+        Sentence.validate(new_consequent)
+        self.consequent = new_consequent
+        return
+    

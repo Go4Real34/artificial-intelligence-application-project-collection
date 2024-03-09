@@ -35,3 +35,9 @@ class Or(Sentence):
         self.disjuncts.append(disjunct)
         return
     
+    def modify(self, new_disjuncts):
+        for new_disjunct in new_disjuncts:
+            Sentence.validate(new_disjunct)
+        self.disjuncts = list(new_disjuncts)
+        return
+    

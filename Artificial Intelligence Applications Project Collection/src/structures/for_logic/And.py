@@ -34,3 +34,9 @@ class And(Sentence):
         self.conjuncts.append(conjunct)
         return
     
+    def modify(self, new_conjuncts):
+        for new_conjunct in new_conjuncts:
+            Sentence.validate(new_conjunct)
+        self.conjuncts = list(new_conjuncts)
+        return
+    
