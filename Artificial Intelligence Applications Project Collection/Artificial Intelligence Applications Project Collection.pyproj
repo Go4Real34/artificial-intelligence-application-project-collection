@@ -39,6 +39,10 @@
     <Compile Include="src\minimax_agent\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\structures\for_logic\Sentence.py" />
+    <Compile Include="src\structures\for_logic\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\structures\for_minimax\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -68,6 +72,7 @@
     <Folder Include="src\bfs_dfs_astar\" />
     <Folder Include="src\minimax_agent\" />
     <Folder Include="src\structures\" />
+    <Folder Include="src\structures\for_logic\" />
     <Folder Include="src\structures\for_minimax\" />
     <Folder Include="src\structures\for_search\" />
     <Folder Include="src\tests\" />
