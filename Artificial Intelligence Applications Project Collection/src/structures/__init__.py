@@ -7,3 +7,4 @@ from .for_minimax.TicTacToe import TicTacToe
 
 from .for_logic import Sentence
 from .for_logic import Symbol
+from .for_logic import Or
