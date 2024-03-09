@@ -18,3 +18,15 @@ class Or(Sentence):
         disjunts = ", ".join([str(disjunct) for disjunct in self.disjuncts])
         return f"Or({disjunts})"
     
+    def evaluate(self, model):
+        return any(disjunct.evaluate(model) for disjunct in self.disjuncts)
+    
+    def formula(self):
+        if len(self.disjuncts) == 1:
+            return self.disjuncts[0].formula()
+        
+        return " ∨ ".join([Sentence.paranthesize(disjunct.formula()) for disjunct in self.disjuncts])
+    
+    def symbols(self):
+        return set.union(*[disjunct.symbols() for disjunct in self.disjuncts])
+    
