@@ -39,6 +39,7 @@
     <Compile Include="src\minimax_agent\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\structures\for_logic\And.py" />
     <Compile Include="src\structures\for_logic\Or.py" />
     <Compile Include="src\structures\for_logic\Sentence.py" />
     <Compile Include="src\structures\for_logic\Symbol.py" />
