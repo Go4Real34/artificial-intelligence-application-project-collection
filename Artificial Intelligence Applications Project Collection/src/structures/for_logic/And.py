@@ -29,3 +29,8 @@ class And(Sentence):
     def symbols(self):
         return set.union(*[conjunct.symbols() for conjunct in self.conjuncts])
     
+    def add(self, conjunct):
+        Sentence.validate(conjunct)
+        self.conjuncts.append(conjunct)
+        return
+    

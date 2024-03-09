@@ -30,3 +30,8 @@ class Or(Sentence):
     def symbols(self):
         return set.union(*[disjunct.symbols() for disjunct in self.disjuncts])
     
+    def add(self, disjunct):
+        Sentence.validate(disjunct)
+        self.disjuncts.append(disjunct)
+        return
+    
