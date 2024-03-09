@@ -9,3 +9,4 @@ from .for_logic import Sentence
 from .for_logic import Symbol
 from .for_logic import Or
 from .for_logic import And
+from .for_logic import Not
