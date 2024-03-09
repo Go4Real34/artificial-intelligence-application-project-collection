@@ -33,6 +33,10 @@
     <Compile Include="src\bfs_dfs_astar\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\logic_games\Modelizer.py" />
+    <Compile Include="src\logic_games\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\minimax_agent\MINIMAX.py">
       <SubType>Code</SubType>
     </Compile>
@@ -76,6 +80,7 @@
   <ItemGroup>
     <Folder Include="src\" />
     <Folder Include="src\bfs_dfs_astar\" />
+    <Folder Include="src\logic_games\" />
     <Folder Include="src\minimax_agent\" />
     <Folder Include="src\structures\" />
     <Folder Include="src\structures\for_logic\" />
