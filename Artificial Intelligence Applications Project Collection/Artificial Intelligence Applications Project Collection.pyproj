@@ -33,7 +33,7 @@
     <Compile Include="src\projects\bfs_dfs_astar\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\projects\logic_games\MODELIZER.py" />
+    <Compile Include="src\structures\for_logic\Modelizer.py" />
     <Compile Include="src\projects\logic_games\__init__.py">
       <SubType>Code</SubType>
     </Compile>

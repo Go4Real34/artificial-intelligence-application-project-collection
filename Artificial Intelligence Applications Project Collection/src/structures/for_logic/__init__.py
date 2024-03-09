@@ -5,3 +5,4 @@ from .And import And
 from .Not import Not
 from .Implication import Implication
 from .Biconditional import Biconditional
+from .Modelizer import Modelizer

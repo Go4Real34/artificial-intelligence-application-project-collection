@@ -12,3 +12,4 @@ from .for_logic import And
 from .for_logic import Not
 from .for_logic import Implication
 from .for_logic import Biconditional
+from .for_logic import Modelizer
