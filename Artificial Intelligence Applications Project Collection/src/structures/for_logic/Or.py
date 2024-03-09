@@ -9,7 +9,7 @@ class Or(Sentence):
         return
     
     def __eq__(self, other):
-        return (isinstance(other, Or)) and self.disjuncts == other.disjuncts
+        return (isinstance(other, Or)) and (self.disjuncts == other.disjuncts)
     
     def __hash__(self):
         return hash(("or", tuple(hash(disjunct) for disjunct in self.disjuncts)))
