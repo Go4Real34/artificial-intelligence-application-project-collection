@@ -2,7 +2,7 @@ from os import getcwd as get_current_working_directory, listdir as list_director
 from os.path import join as join_paths
 
 from ..structures import Maze
-from ..bfs_dfs_astar import BFS, DFS, ASTAR
+from ..projects import BFS, DFS, ASTAR
 
 def bfs_dfs_astar_test():
     cwd = get_current_working_directory()

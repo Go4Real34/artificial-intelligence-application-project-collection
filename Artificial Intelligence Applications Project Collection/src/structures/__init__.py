@@ -1,9 +1,9 @@
-from .for_search.Node import Node
-from .for_search.Maze import Maze
-from .for_search.Queue import Queue
-from .for_search.Stack import Stack
+from .for_search import Node
+from .for_search import Maze
+from .for_search import Queue
+from .for_search import Stack
 
-from .for_minimax.TicTacToe import TicTacToe
+from .for_minimax import TicTacToe
 
 from .for_logic import Sentence
 from .for_logic import Symbol

@@ -1,4 +1,4 @@
-class Modelizer:
+class MODELIZER:
     def __init__(self, knowledge, query):
         self.knowledge = knowledge
         self.query = query

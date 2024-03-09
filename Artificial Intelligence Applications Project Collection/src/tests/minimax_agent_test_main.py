@@ -1,5 +1,5 @@
 from ..structures import TicTacToe
-from ..minimax_agent import MINIMAX
+from ..projects import MINIMAX
 
 def minimax_agent_test():
     game = TicTacToe()

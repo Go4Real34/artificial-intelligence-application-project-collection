@@ -11,13 +11,15 @@ def main():
     print()
     
     try:
-        if 0 < int(test_index) <= 2:
-            if int(test_index) == 1:
+        selected_index = int(test_index)
+        
+        if 0 < selected_index <= 3:
+            if selected_index == 1:
                 bfs_dfs_astar_test()
                 
-            elif int(test_index) == 2:
+            elif selected_index == 2:
                 minimax_agent_test()
-            
+                
         else:
             print("Invalid index.")
             exit(2)

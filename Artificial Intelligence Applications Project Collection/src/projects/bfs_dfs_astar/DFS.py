@@ -1,4 +1,4 @@
-from ..structures import Node, Stack
+from ...structures import Node, Stack
 
 class DFS():
     def __init__(self, maze):

@@ -1,4 +1,4 @@
-from ..structures import TicTacToe
+from ...structures import TicTacToe
 
 class MINIMAX:
     def __init__(self, game):

@@ -1,4 +1,4 @@
-from ..structures import Node, Queue
+from ...structures import Node, Queue
 
 class ASTAR:
     def __init__(self, maze):

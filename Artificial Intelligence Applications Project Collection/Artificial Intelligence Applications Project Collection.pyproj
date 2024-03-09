@@ -23,24 +23,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.py" />
-    <Compile Include="src\bfs_dfs_astar\ASTAR.py">
+    <Compile Include="src\projects\bfs_dfs_astar\ASTAR.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\bfs_dfs_astar\BFS.py">
+    <Compile Include="src\projects\bfs_dfs_astar\BFS.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\bfs_dfs_astar\DFS.py" />
-    <Compile Include="src\bfs_dfs_astar\__init__.py">
+    <Compile Include="src\projects\bfs_dfs_astar\DFS.py" />
+    <Compile Include="src\projects\bfs_dfs_astar\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\logic_games\Modelizer.py" />
-    <Compile Include="src\logic_games\__init__.py">
+    <Compile Include="src\projects\logic_games\MODELIZER.py" />
+    <Compile Include="src\projects\logic_games\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\minimax_agent\MINIMAX.py">
+    <Compile Include="src\projects\minimax_agent\MINIMAX.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\minimax_agent\__init__.py">
+    <Compile Include="src\projects\minimax_agent\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\projects\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\structures\for_logic\And.py" />
@@ -79,9 +82,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\" />
-    <Folder Include="src\bfs_dfs_astar\" />
-    <Folder Include="src\logic_games\" />
-    <Folder Include="src\minimax_agent\" />
+    <Folder Include="src\projects\bfs_dfs_astar\" />
+    <Folder Include="src\projects\logic_games\" />
+    <Folder Include="src\projects\minimax_agent\" />
+    <Folder Include="src\projects\" />
     <Folder Include="src\structures\" />
     <Folder Include="src\structures\for_logic\" />
     <Folder Include="src\structures\for_minimax\" />
