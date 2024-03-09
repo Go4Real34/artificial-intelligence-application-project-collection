@@ -3,7 +3,7 @@ from .Sentence import Sentence
 class Or(Sentence):
     def __init__(self, *disjuncts):
         for disjunct in disjuncts:
-            Sentence.validate(disjunct)
+            Sentence().validate(disjunct)
             
         self.disjuncts = list(disjuncts)
         return
@@ -25,19 +25,19 @@ class Or(Sentence):
         if len(self.disjuncts) == 1:
             return self.disjuncts[0].formula()
         
-        return " ∨ ".join([Sentence.paranthesize(disjunct.formula()) for disjunct in self.disjuncts])
+        return " ∨ ".join([Sentence().paranthesize(disjunct.formula()) for disjunct in self.disjuncts])
     
     def symbols(self):
         return set.union(*[disjunct.symbols() for disjunct in self.disjuncts])
     
     def add(self, disjunct):
-        Sentence.validate(disjunct)
+        Sentence().validate(disjunct)
         self.disjuncts.append(disjunct)
         return
     
     def modify(self, new_disjuncts):
         for new_disjunct in new_disjuncts:
-            Sentence.validate(new_disjunct)
+            Sentence().validate(new_disjunct)
         self.disjuncts = list(new_disjuncts)
         return
     

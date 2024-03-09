@@ -2,7 +2,7 @@ from .Sentence import Sentence
 
 class Not(Sentence):
     def __init__(self, operand):
-        Sentence.validate(operand)
+        Sentence().validate(operand)
         self.operand = operand
         return
     
@@ -19,13 +19,13 @@ class Not(Sentence):
         return not self.operand.evaluate(model)
     
     def formula(self):
-        return '¬' + Sentence.paranthesize(self.operand.formula())
+        return 'Â¬' + Sentence().paranthesize(self.operand.formula())
     
     def symbols(self):
         return self.operand.symbols()
     
     def modify(self, new_operand):
-        Sentence.validate(new_operand)
+        Sentence().validate(new_operand)
         self.operand = new_operand
         return
     

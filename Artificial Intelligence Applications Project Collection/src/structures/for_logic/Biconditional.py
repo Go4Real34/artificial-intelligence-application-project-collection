@@ -2,10 +2,10 @@ from .Sentence import Sentence
 
 class Biconditional(Sentence):
     def __init__(self, left, right):
-        Sentence.validate(left)
+        Sentence().validate(left)
         self.left = left
         
-        Sentence.validate(right)
+        Sentence().validate(right)
         self.right = right
         
         return
@@ -23,18 +23,18 @@ class Biconditional(Sentence):
         return (((self.left.evaluate(model)) and (self.right.evaluate(model))) or ((not (self.left.evaluate(model))) and (not (self.left.evaluate(model)))))
     
     def formula(self):
-        left = Sentence.paranthesize(str(self.left))
-        right = Sentence.paranthesize(str(self.right))
+        left = Sentence().paranthesize(str(self.left))
+        right = Sentence().paranthesize(str(self.right))
         return f"{left} <-> {right}"
 
     def symbols(self):
         return set.union(self.left.symbols(), self.right.symbols())
     
     def modify(self, new_left, new_right):
-        Sentence.validate(new_left)
+        Sentence().validate(new_left)
         self.left = new_left
         
-        Sentence.validate(new_right)
+        Sentence().validate(new_right)
         self.right = new_right
         return
     

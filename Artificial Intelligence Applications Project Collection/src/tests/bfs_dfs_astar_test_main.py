@@ -71,8 +71,10 @@ def bfs_dfs_astar_test():
         print("Invalid input type on maze selection.")
         exit(1)
 
+
 def main():
     return 0
+
 
 if __name__ == '__main__':
     main()
