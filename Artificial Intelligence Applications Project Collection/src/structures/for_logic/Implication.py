@@ -19,3 +19,14 @@ class Implication(Sentence):
     def __repr__(self):
         return f"Implication({self.antecedent}, {self.consequent})"
     
+    def evaluate(self, model):
+        return ((not self.antecedent.evaluate(model)) or (self.consequent.evaluate(model)))
+    
+    def formula(self):
+        antecedent = Sentence.paranthesize(self.antecedent.formula())
+        consequent = Sentence.paranthesize(self.consequent.formula())
+        return f"{antecedent} -> {consequent}"
+    
+    def symbols(self):
+        return set.union(self.antecedent.symbols(), self.consequent.symbols())
+    
