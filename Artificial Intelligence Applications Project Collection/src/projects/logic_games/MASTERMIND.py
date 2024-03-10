@@ -55,6 +55,11 @@ class MASTERMIND(Problemizer):
         print("The problem is as follows:")
         return
     
+    def add_information(self):
+        operation_index, operands_index, should_save_to_knowledge_base = self.get_information()
+        self.add_logical_expression_to_knowledge_base(operation_index, operands_index, should_save_to_knowledge_base)
+        return
+    
     def clear_extra_added_operands(self):
         self.operands = {}
         for index, symbol in enumerate(self.symbols):
