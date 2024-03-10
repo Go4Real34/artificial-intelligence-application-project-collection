@@ -161,11 +161,11 @@ class Problemizer:
     def clear_extra_added_operands(self):
         raise Exception("No extra added knowledge exists.")
     
-    def check_result(self):
+    def check_result(self, knowledge, model):
         print(f"\nCurrent Knowledge Base: " + (f"{self.knowledge.formula()}" if self.knowledge_length != 0 else "None"), end='\n' * 2)
         
         if self.knowledge_length != 0:
-            model = Modelizer(self.knowledge, self.rain)
+            model = Modelizer(knowledge, model)
             is_knowledge_base_correct = model.check()
             if is_knowledge_base_correct:
                 print("Correct knowledge base acquired. Well done!")

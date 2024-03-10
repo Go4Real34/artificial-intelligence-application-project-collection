@@ -30,7 +30,7 @@ class RAINY_DAY(Problemizer):
         while True:
             self.print_problem_information()
             self.add_information()
-            if self.check_result():
+            if self.check_result(self.knowledge, self.rain):
                 break
             
         return
