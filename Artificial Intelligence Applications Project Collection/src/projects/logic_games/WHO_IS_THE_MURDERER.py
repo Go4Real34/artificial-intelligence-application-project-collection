@@ -1,13 +1,15 @@
-from ...structures import Problemizer, Symbol
+from ...structures import Problemizer, Symbol, Modelizer, Not
 
 class WHO_IS_THE_MURDERER(Problemizer):
     def __init__(self):
+        super().__init__()
+        
         self.characters = ["Colonel Mustard", "Professor Plum", "Ms. Scarlet"]
         self.rooms = ["Ball Room", "Kitchen", "Library"]
         self.weapons = ["Knife", "Revolver", "Wrench"]
         
         self.symbols = []
-        for character in self.character:
+        for character in self.characters:
             self.symbols.append(Symbol(character))
         
         for room in self.rooms:
@@ -16,7 +18,7 @@ class WHO_IS_THE_MURDERER(Problemizer):
         for weapon in self.weapons:
             self.symbols.append(Symbol(weapon))
             
-        self.operations: {
+        self.operations = {
             1: "And",
             2: "Or",
             3: "Not",
@@ -65,4 +67,30 @@ class WHO_IS_THE_MURDERER(Problemizer):
             })
             
         return
+    
+    def check_result(self):
+        print(f"\nCurrent Knowledge Base: " + (f"{self.knowledge.formula()}" if self.knowledge_length != 0 else "None"), end='\n' * 2)
+        
+        correct_hits = 0
+        correct_answer = []
+        if self.knowledge_length != 0:
+            for symbol in self.symbols:
+                model_true = Modelizer(self.knowledge, symbol)
+                model_false = Modelizer(self.knowledge, Not(symbol))
+                if model_true.check():
+                    correct_hits += 1
+                    correct_answer.append(symbol)
+                    print(f"{symbol}: Is found correct.")
+                
+                elif not model_false.check():
+                    print(f"{symbol}: Is maybe correct.")
+                
+        if correct_hits == 3:
+            print("\nCorrect knowledge base acquired. Well done!")
+            print(f"{str(correct_answer[0])} done the murder in {str(correct_answer[1])} with a {str(correct_answer[2])}.")
+        
+        else:
+            print("\nKnowledge base is still missing some information. Keep trying!")
+            
+        return correct_hits == 3
     

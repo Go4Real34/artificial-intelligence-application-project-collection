@@ -74,15 +74,18 @@ class HOGWARTS_HOUSES(Problemizer):
         print(f"\nCurrent Knowledge Base: " + (f"{self.knowledge.formula()}" if self.knowledge_length != 0 else "None"), end='\n' * 2)
         
         correct_hits = 0
+        correct_answer = []
         if self.knowledge_length != 0:
             for symbol in self.symbols:
                 model = Modelizer(self.knowledge, symbol)
                 if model.check():
                     correct_hits += 1
+                    correct_answer.append(symbol)
                     print(f"{str(symbol)} is correct.")
                     
         if correct_hits == 4:
             print("Correct knowledge base acquired. Well done!")
+            
         
         else:
             print("Knowledge base is still missing some information. Keep trying!")
