@@ -34,6 +34,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\projects\logic_games\RAINY_DAY.py" />
+    <Compile Include="src\structures\for_logic\Problemizer.py" />
     <Compile Include="src\structures\for_logic\Modelizer.py" />
     <Compile Include="src\projects\logic_games\__init__.py">
       <SubType>Code</SubType>

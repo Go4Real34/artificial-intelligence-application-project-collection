@@ -6,3 +6,4 @@ from .Not import Not
 from .Implication import Implication
 from .Biconditional import Biconditional
 from .Modelizer import Modelizer
+from .Problemizer import Problemizer
