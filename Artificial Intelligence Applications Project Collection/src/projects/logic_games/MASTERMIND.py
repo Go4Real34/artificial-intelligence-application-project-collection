@@ -30,6 +30,16 @@ class MASTERMIND(Problemizer):
 
         return
     
+    def play(self):
+        self.introduce_problem()
+        while True:
+            self.print_problem_information()
+            self.add_information()
+            if self.check_result():
+                break
+            
+        return
+    
     def print_problem_information(self):
         print("\t1. Each color has a position.")
         print("\t2. Only one position can hold a color.")
