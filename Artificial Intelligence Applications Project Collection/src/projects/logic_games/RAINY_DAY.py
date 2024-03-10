@@ -51,48 +51,7 @@ class RAINY_DAY(Problemizer):
     
     def add_information(self):
         operation_index, operands_index, should_save_to_knowledge_base = self.get_information()
-        if operation_index == len(self.operations) - 2 and operands_index != [0] and should_save_to_knowledge_base:
-            self.knowledge.add(self.operands[operands_index[0]][1])
-            self.knowledge_length += 1
-            return
-
-        elif operation_index == len(self.operations) - 1 and operands_index == [0] and should_save_to_knowledge_base:
-            self.clear_knowledge_base()
-            print("\nKnowledge base is cleared.")
-            return
-        
-        elif operation_index == len(self.operations) and operands_index == [0] and not should_save_to_knowledge_base:
-            self.clear_extra_added_operands()
-            print("\nExtra Added Operands are cleared.")
-            return
-        
-        thing_to_add = None
-        if self.operations[operation_index] == "Not":
-            thing_to_add = Not(self.operands[operands_index[0]][1])
-            
-        elif self.operations[operation_index] == "Implication":
-            thing_to_add = Implication(self.operands[operands_index[0]][1], self.operands[operands_index[1]][1])
-            
-        elif self.operations[operation_index] == "Biconditional":
-            thing_to_add = Biconditional(self.operands[operands_index[0]][1], self.operands[operands_index[1]][1])
-            
-        elif self.operations[operation_index] == "Or":
-            or_statement = Or()
-            for operand in operands_index:
-                or_statement.add(self.operands[operand][1])  
-            thing_to_add = or_statement
-            
-        elif self.operations[operation_index] == "And":
-            and_statement = And()
-            for operand in operands_index:
-                and_statement.add(self.operands[operand][1])  
-            thing_to_add = and_statement
-            
-        self.operands.update({len(self.operands) + 1: [thing_to_add.formula(), thing_to_add]})
-        if should_save_to_knowledge_base:
-            self.knowledge.add(thing_to_add)
-            self.knowledge_length += 1
-        
+        self.add_logical_expression_to_knowledge_base(operation_index, operands_index, should_save_to_knowledge_base)
         return
     
     def clear_extra_added_operands(self):
