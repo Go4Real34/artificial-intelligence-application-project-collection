@@ -37,6 +37,16 @@ class WHO_IS_THE_MURDERER(Problemizer):
             
         return
     
+    def play(self):
+        self.introduce_problem()
+        while True:
+            self.print_problem_information()
+            self.add_information()
+            if self.check_result():
+                break
+            
+        return
+    
     def print_problem_information(self):
         print("1. One of the people is a murderer.")
         print("2. The murder is happened in one of the rooms.")
