@@ -30,6 +30,16 @@ class HOGWARTS_HOUSES(Problemizer):
             
         return
     
+    def play(self):
+        self.introduce_problem()
+        while True:
+            self.print_problem_information()
+            self.add_information()
+            if self.check_result():
+                break
+            
+        return
+    
     def print_problem_information(self):
         print("\t1. Each person belongs to a house.")
         print("\t2. Only one person can belong per house.")
