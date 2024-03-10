@@ -86,6 +86,31 @@ class RAINY_DAY:
             
         return selected_operation_index, selected_operand_indexes
 
+    def add_information(self):
+        operation, operands = self.get_information()
+        if self.operations[operation] == "Not":
+            self.knowledge.add(Not(self.operands[operands[0]][1]))
+            
+        elif self.operations[operation] == "Implication":
+            self.knowledge.add(Implication(self.operands[operands[0]][1], self.operands[operands[1]][1]))
+            
+        elif self.operations[operation] == "Biconditional":
+            self.knowledge.add(Biconditional(self.operands[operands[0]][1], self.operands[operands[1]][1]))
+            
+        elif self.operations[operation] == "Or":
+            or_statement = Or()
+            for operand in operands:
+                or_statement.add(self.operands[operand][1])  
+            self.knowledge.add(or_statement)
+            
+        elif self.operations[operation] == "And":
+            and_statement = And()
+            for operand in operands:
+                and_statement.add(self.operands[operand][1])  
+            self.knowledge.add(and_statement)
+            
+        return
+    
     def check_result(self):
         print(f"Current Knowledge Base: {self.knowledge.formula()}")
         model = Modelizer(self.knowledge, self.rain)
