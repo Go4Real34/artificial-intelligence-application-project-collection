@@ -34,6 +34,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\projects\logic_games\HOGWARTS_HOUSES.py" />
+    <Compile Include="src\projects\logic_games\MASTERMIND.py" />
     <Compile Include="src\projects\logic_games\RAINY_DAY.py" />
     <Compile Include="src\projects\logic_games\WHO_IS_THE_MURDERER.py" />
     <Compile Include="src\structures\for_logic\Problemizer.py" />
