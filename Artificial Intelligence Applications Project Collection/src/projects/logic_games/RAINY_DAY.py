@@ -24,6 +24,8 @@ class RAINY_DAY(Problemizer):
             2: ["Hagrid", self.hagrid],
             3: ["Dumbledore", self.dumbledore]
         }
+
+        return
     
     def play(self):
         self.introduce_problem()
