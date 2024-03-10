@@ -17,9 +17,9 @@ class HOGWARTS_HOUSES(Problemizer):
             3: "Not",
             4: "Implication",
             5: "Biconditional",
-            7: "Add Knowledge to Knowledge Base from Extra Added Operands",
-            8: "Clear Knowledge Base",
-            9: "Clear Extra Added Operands"
+            6: "Add Knowledge to Knowledge Base from Extra Added Operands",
+            7: "Clear Knowledge Base",
+            8: "Clear Extra Added Operands"
         }
         
         self.operands = {}
