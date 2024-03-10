@@ -84,11 +84,13 @@ class HOGWARTS_HOUSES(Problemizer):
                     print(f"{str(symbol)} is correct.")
                     
         if correct_hits == 4:
-            print("Correct knowledge base acquired. Well done!")
-            
-        
+            print("Correct knowledge base is acquired. Well done!")
+            for answer in correct_answer:
+                person, house = str(answer).split(" ")
+                print(f"{person} belongs to {house}.")
+                
         else:
             print("Knowledge base is still missing some information. Keep trying!")
         
-        return correct_hits == 4
+        return (correct_hits == 4)
     

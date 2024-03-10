@@ -38,7 +38,7 @@ class RAINY_DAY(Problemizer):
     def print_problem_information(self):
         print("\t1. If it is not raining, Hagrid will be happy.")
         print("\t2. Either Hagrid or Dumbledore is happy.")
-        print("\t3. But Hagrid and Dumbledore cannot be sad at the same time.")
+        print("\t3. But Hagrid and Dumbledore cannot be happy at the same time.")
         print("\t4. And Dumbledore must be happy.")
         return
     
@@ -70,11 +70,13 @@ class RAINY_DAY(Problemizer):
             model = Modelizer(self.knowledge, self.operands[1][1])
             is_knowledge_base_correct = model.check()
             if is_knowledge_base_correct:
-                print("Correct knowledge base acquired. Well done!")
+                print("Correct knowledge base is acquired. Well done!")
+                print("It is raining, so Hagrid is not happy but Dumbledore is happy. With that both of them is not happy at the same time sad. So, the result is 'Yes'.")
             
             else:
                 print("Knowledge base is still missing some information. Keep trying!")
                 
-            return is_knowledge_base_correct
+            return (is_knowledge_base_correct)
             
         return False
+    
