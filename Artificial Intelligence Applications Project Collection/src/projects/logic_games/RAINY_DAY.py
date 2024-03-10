@@ -35,3 +35,12 @@ class RAINY_DAY(Problemizer):
         print("The problem is as follows:")
         return
     
+    def clear_extra_added_operands(self):
+        self.operands = {
+            1: ["Rain", self.rain],
+            2: ["Hagrid", self.hagrid],
+            3: ["Dumbledore", self.dumbledore]
+        }
+        
+        return
+    

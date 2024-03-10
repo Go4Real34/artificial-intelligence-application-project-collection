@@ -1,4 +1,10 @@
-from . import Symbol, Modelizer, And, Or, Not, Implication, Biconditional
+from .Symbol import Symbol
+from .Modelizer import Modelizer
+from .And import And
+from .Or import Or
+from .Not import Not
+from .Implication import Implication
+from .Biconditional import Biconditional
 
 class Problemizer:
     def __init__(self):
@@ -18,6 +24,8 @@ class Problemizer:
         print("\nSelect a logical operation.")
         for key, value in self.operations.items():
             print(f"[{key}] - {value}")
+        print(f"[{len(self.operations) + 1}] - Clear Knowledge Base")
+        print(f"[{len(self.operations) + 2}] - Clear Extra Added Operands")
         
         logical_operation = input("Enter the number of the logical operation: ").rstrip().lstrip()
         if logical_operation == "":
@@ -27,6 +35,12 @@ class Problemizer:
         selected_operation_index = None
         try:
             selected_operation_index = int(logical_operation)
+            if selected_operation_index == len(self.operations) + 1:
+                return selected_operation_index, [0], True
+            
+            elif selected_operation_index == len(self.operations) + 2:
+                return selected_operation_index, [0], False
+            
             if not (0 < selected_operation_index <= len(self.operations)):
                 print("Invalid index on logical operation selection.")
                 exit(2)
@@ -90,6 +104,16 @@ class Problemizer:
 
     def add_information(self):
         operation_index, operands_index, should_save_to_knowledge_base = self.get_information()
+        if operation_index == len(self.operations) + 1 and operands_index == [0] and should_save_to_knowledge_base:
+            self.clear_knowledge_base()
+            print("\nKnowledge base is cleared.")
+            return
+        
+        if operation_index == len(self.operations) + 2 and operands_index == [0] and not should_save_to_knowledge_base:
+            self.clear_extra_added_operands()
+            print("\nExtra Added Operands are cleared.")
+            return
+        
         thing_to_add = None
         if self.operations[operation_index] == "Not":
             thing_to_add = Not(self.operands[operands_index[0]][1])
@@ -118,6 +142,14 @@ class Problemizer:
             self.knowledge_length += 1
         
         return
+    
+    def clear_knowledge_base(self):
+        self.knowledge = And()
+        self.knowledge_length = 0
+        return
+    
+    def clear_extra_added_operands(self):
+        raise Exception("No extra added knowledge exists.")
     
     def check_result(self):
         print(f"\nCurrent Knowledge Base: " + (f"{self.knowledge.formula()}" if self.knowledge_length != 0 else "None"), end='\n' * 2)
