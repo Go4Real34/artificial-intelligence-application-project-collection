@@ -55,3 +55,12 @@ class MASTERMIND(Problemizer):
         print("The problem is as follows:")
         return
     
+    def clear_extra_added_operands(self):
+        self.operands = {}
+        for index, symbol in enumerate(self.symbols):
+            self.operands.update({
+                index + 1: [str(symbol), symbol]
+            })
+            
+        return
+    
