@@ -1,2 +1,3 @@
 from .bfs_dfs_astar_test_main import bfs_dfs_astar_test
 from .minimax_agent_test_main import minimax_agent_test
+from .logic_games_test_main import logic_games_test
