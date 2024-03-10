@@ -7,10 +7,9 @@ class MASTERMIND(Problemizer):
         self.colors = ["Red", "Blue", "Green", "Yellow"]
         self.positions = [1, 2, 3, 4]
         self.symbols = []
-        for position in range(4):
+        for position in self.positions:
             for color in self.colors:
-                for position in self.positions:
-                    self.symbols.append(Symbol(f"{color} {position}"))
+                self.symbols.append(Symbol(f"{color} {position}"))
                 
         self.operations = {
             1: "And",
@@ -80,10 +79,10 @@ class MASTERMIND(Problemizer):
                 if model.check():
                     correct_hits += 1
                     correct_answer.append(symbol)
-                    print(f"{str(symbol)} is correct.")
+                    print(f"{str(symbol)}: Is found correct.")
                     
         if correct_hits == 4:
-            print("Correct knowledge base is acquired. Well done!")
+            print("\nCorrect knowledge base is acquired. Well done!\n")
             for answer in correct_answer:
                 color, position = str(answer).split(" ")
                 print(f"{color} is at position {position}.")

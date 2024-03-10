@@ -96,11 +96,11 @@ class WHO_IS_THE_MURDERER(Problemizer):
                     print(f"{symbol}: Is maybe correct.")
                 
         if correct_hits == 3:
-            print("\nCorrect knowledge base is acquired. Well done!")
+            print("\nCorrect knowledge base is acquired. Well done!\n")
             print(f"{str(correct_answer[0])} done the murder in {str(correct_answer[1])} with a {str(correct_answer[2])}.")
         
         else:
-            print("\nKnowledge base is still missing some information. Keep trying!")
+            print("Knowledge base is still missing some information. Keep trying!")
             
         return (correct_hits == 3)
     
