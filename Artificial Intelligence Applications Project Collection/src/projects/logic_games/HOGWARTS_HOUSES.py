@@ -1,4 +1,4 @@
-from ...structures import Problemizer, Symbol
+from ...structures import Problemizer, Symbol, Modelizer
 
 class HOGWARTS_HOUSES(Problemizer):
     def __init__(self):
@@ -59,4 +59,23 @@ class HOGWARTS_HOUSES(Problemizer):
             })
             
         return
+    
+    def check_result(self):
+        print(f"\nCurrent Knowledge Base: " + (f"{self.knowledge.formula()}" if self.knowledge_length != 0 else "None"), end='\n' * 2)
+        
+        correct_hits = 0
+        if self.knowledge_length != 0:
+            for symbol in self.symbols:
+                model = Modelizer(self.knowledge, symbol)
+                if model.check():
+                    correct_hits += 1
+                    print(f"{str(symbol)} is correct.")
+                    
+        if correct_hits == 4:
+            print("Correct knowledge base acquired. Well done!")
+        
+        else:
+            print("Knowledge base is still missing some information. Keep trying!")
+        
+        return correct_hits == 4
     
