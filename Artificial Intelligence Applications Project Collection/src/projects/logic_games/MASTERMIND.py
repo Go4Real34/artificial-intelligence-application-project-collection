@@ -58,7 +58,7 @@ class MASTERMIND(Problemizer):
         return
     
     def introduce_problem(self):
-        print("Welcome to the Mastermind problem.")
+        print("Welcome to the Mastermind Game.")
         print("Result must give correct positions of the colors.")
         print("Create the correct knowledge base to solve the problem.")
         print("The problem is as follows:")

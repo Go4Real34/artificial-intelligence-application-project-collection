@@ -19,7 +19,7 @@ class Problemizer:
         for key, value in self.operations.items():
             print(f"[{key}] - {value}")
         
-        logical_operation = input("Enter the number of the logical operation: ").rstrip().lstrip()
+        logical_operation = input("\nEnter the number of the logical operation: ").rstrip().lstrip()
         if logical_operation == "":
             print("No logical operation selected.")
             exit(2)
@@ -45,7 +45,7 @@ class Problemizer:
         for key, value in self.operands.items():
             print(f"[{key}] - {value[0]}")
             
-        operand_s = input("Enter the numbers of operands: " if self.operations[selected_operation_index] != "Not" else "Enter the number of operand: ").rstrip().lstrip()
+        operand_s = input("\nEnter the numbers of operands: " if self.operations[selected_operation_index] != "Not" else "\nEnter the number of operand: ").rstrip().lstrip()
         if operand_s == "":
             print("No operands selected." if self.operations[selected_operation_index] != "Not" else "No operand selected.")
             exit(2)
@@ -83,7 +83,7 @@ class Problemizer:
         print(f"[1] - Save in the knowledge base.")
         print(f"[2] - Save it as an operand.")
         
-        place = input("Enter the number of the place to save the statement: ").rstrip().lstrip()
+        place = input("\nEnter the number of the place to save the statement: ").rstrip().lstrip()
         if place == "":
             print("No place selected.")
             exit(2)

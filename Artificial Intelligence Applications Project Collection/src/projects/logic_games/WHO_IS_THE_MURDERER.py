@@ -58,7 +58,7 @@ class WHO_IS_THE_MURDERER(Problemizer):
         return
     
     def introduce_problem(self):
-        print("Welcome to the Who Is The Murderer problem.")
+        print("Welcome to the Who Is The Murderer? Game.")
         print("Result must give the murderer's name, room and weapon.")
         print("Create the correct knowledge base to solve the problem.")
         print("The problem is as follows:")

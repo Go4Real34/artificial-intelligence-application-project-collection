@@ -43,7 +43,7 @@ class RAINY_DAY(Problemizer):
         return
     
     def introduce_problem(self):
-        print("Welcome to the rainy day problem.")
+        print("Welcome to the Rainy Day Problem.")
         print("Result must give 'Yes' answer to the question 'Is it raining?'")
         print("Create the correct knowledge base to solve the problem.")
         print("The problem is as follows:")

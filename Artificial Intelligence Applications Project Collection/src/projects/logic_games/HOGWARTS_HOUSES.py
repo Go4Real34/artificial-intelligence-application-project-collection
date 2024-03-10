@@ -50,7 +50,7 @@ class HOGWARTS_HOUSES(Problemizer):
         return
     
     def introduce_problem(self):
-        print("Welcome to the Hogwart's Houses problem.")
+        print("Welcome to the Hogwart's Houses Problem.")
         print("Result must give the house of each person.")
         print("Create the correct knowledge base to solve the problem.")
         print("The problem is as follows:")
