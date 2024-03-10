@@ -63,9 +63,9 @@ class HOGWARTS_HOUSES(Problemizer):
     
     def clear_extra_added_operands(self):
         self.operands = {}
-        for index, person in enumerate(self.people):
+        for index, symbol in enumerate(self.symbols):
             self.operands.update({
-                index + 1: [person, Symbol(person)]
+                index + 1: [str(symbol), symbol]
             })
             
         return
