@@ -35,3 +35,20 @@ class WHO_IS_THE_MURDERER(Problemizer):
             
         return
     
+    def print_problem_information(self):
+        print("1. One of the people is a murderer.")
+        print("2. The murder is happened in one of the rooms.")
+        print("3. The murder is done with a weapon.")
+        print("4. Someone except Colonel Mustard was both not in kitchen and not carrying a revolver.")
+        print("5. Someone except Ms. Scarlet either was not in library or was not carrying a wrench.")
+        print("6. The murderer is not Professor Plum.")
+        print("7. The murder is not done in Ball Room.")
+        return
+    
+    def introduce_problem(self):
+        print("Welcome to the Who Is The Murderer problem.")
+        print("Result must give the murderer's name, room and weapon.")
+        print("Create the correct knowledge base to solve the problem.")
+        print("The problem is as follows:")
+        return
+    
