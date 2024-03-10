@@ -13,9 +13,12 @@ class RAINY_DAY(Problemizer):
             2: "Or",
             3: "Not",
             4: "Implication",
-            5: "Biconditional"
+            5: "Biconditional",
+            6: "Add Knowledge to Knowledge Base from Extra Added Operands",
+            7: "Clear Knowledge Base",
+            8: "Clear Extra Added Operands"
         }
-    
+        
         self.operands = {
             1: ["Rain", self.rain],
             2: ["Hagrid", self.hagrid],
@@ -23,14 +26,15 @@ class RAINY_DAY(Problemizer):
         }
     
     def print_problem_information(self):
-        print("1 - If it is not raining, Hagrid will be happy.")
-        print("2 - Either Hagrid or Dumbledore is happy.")
-        print("3 - But Hagrid and Dumbledore cannot be sad at the same time.")
-        print("4 - And Dumbledore must be happy.")
+        print("\t1. If it is not raining, Hagrid will be happy.")
+        print("\t2. Either Hagrid or Dumbledore is happy.")
+        print("\t3. But Hagrid and Dumbledore cannot be sad at the same time.")
+        print("\t4. And Dumbledore must be happy.")
         return
     
     def introduce_problem(self):
         print("Welcome to the rainy day problem.")
+        print("Result must give 'Yes' answer to the question 'Is it raining?'")
         print("Create the correct knowledge base to solve the problem.")
         print("The problem is as follows:")
         return

@@ -24,8 +24,6 @@ class Problemizer:
         print("\nSelect a logical operation.")
         for key, value in self.operations.items():
             print(f"[{key}] - {value}")
-        print(f"[{len(self.operations) + 1}] - Clear Knowledge Base")
-        print(f"[{len(self.operations) + 2}] - Clear Extra Added Operands")
         
         logical_operation = input("Enter the number of the logical operation: ").rstrip().lstrip()
         if logical_operation == "":
@@ -35,10 +33,10 @@ class Problemizer:
         selected_operation_index = None
         try:
             selected_operation_index = int(logical_operation)
-            if selected_operation_index == len(self.operations) + 1:
+            if selected_operation_index == len(self.operations) - 1:
                 return selected_operation_index, [0], True
             
-            elif selected_operation_index == len(self.operations) + 2:
+            elif selected_operation_index == len(self.operations):
                 return selected_operation_index, [0], False
             
             if not (0 < selected_operation_index <= len(self.operations)):
@@ -53,14 +51,18 @@ class Problemizer:
         for key, value in self.operands.items():
             print(f"[{key}] - {value[0]}")
             
-        operand_s = input("Enter the numbers of operands: ").rstrip().lstrip()
+        operand_s = input("Enter the numbers of operands: " if self.operations[selected_operation_index] != "Not" else "Enter the number of operand: ").rstrip().lstrip()
         if operand_s == "":
-            print("No operands selected.")
+            print("No operands selected." if self.operations[selected_operation_index] != "Not" else "No operand selected.")
             exit(2)
             
         selected_operand_indexes = None
         try:
             operands = [int(operand) for operand in operand_s.split(" ")]
+            if selected_operation_index == len(self.operations) - 2 and len(operands) != 1:
+                print("You can only select one operand to add directly to the knowledge base.")
+                exit(2)
+                
             if self.operations[selected_operation_index] == "Not" and len(operands) != 1:
                 print("Invalid number of operands for Not operation.")
                 exit(2)
@@ -80,6 +82,9 @@ class Problemizer:
             print("Invalid input type on operand selection.")
             exit(2)
             
+        if selected_operand_indexes == [len(self.operands)]:
+            return selected_operation_index, selected_operand_indexes, True
+        
         print("\nSelect the place to save this statement.")
         print(f"[1] - Save in the knowledge base.")
         print(f"[2] - Save it as an operand.")
@@ -104,12 +109,17 @@ class Problemizer:
 
     def add_information(self):
         operation_index, operands_index, should_save_to_knowledge_base = self.get_information()
-        if operation_index == len(self.operations) + 1 and operands_index == [0] and should_save_to_knowledge_base:
+        if operation_index == len(self.operations) - 2 and operands_index != [0] and should_save_to_knowledge_base:
+            self.knowledge.add(self.operands[operands_index[0]][1])
+            self.knowledge_length += 1
+            return
+
+        elif operation_index == len(self.operations) - 1 and operands_index == [0] and should_save_to_knowledge_base:
             self.clear_knowledge_base()
             print("\nKnowledge base is cleared.")
             return
         
-        if operation_index == len(self.operations) + 2 and operands_index == [0] and not should_save_to_knowledge_base:
+        elif operation_index == len(self.operations) and operands_index == [0] and not should_save_to_knowledge_base:
             self.clear_extra_added_operands()
             print("\nExtra Added Operands are cleared.")
             return
