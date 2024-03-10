@@ -25,6 +25,16 @@ class RAINY_DAY(Problemizer):
             3: ["Dumbledore", self.dumbledore]
         }
     
+    def play(self):
+        self.introduce_problem()
+        while True:
+            self.print_problem_information()
+            self.add_information()
+            if self.check_result():
+                break
+            
+        return
+    
     def print_problem_information(self):
         print("\t1. If it is not raining, Hagrid will be happy.")
         print("\t2. Either Hagrid or Dumbledore is happy.")
