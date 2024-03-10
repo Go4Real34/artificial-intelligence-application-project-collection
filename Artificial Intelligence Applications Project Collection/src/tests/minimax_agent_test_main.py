@@ -34,9 +34,7 @@ def minimax_agent_test():
                 game.current_player = 'X' if player == 'O' else 'O'
                 
             game.current_player_index = 0 if game.current_player == 'X' else 1
-                
-        
-        
+            
     while True:
         game.print_board()
         winner = game.get_winner()

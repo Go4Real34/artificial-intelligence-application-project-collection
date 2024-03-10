@@ -8,7 +8,7 @@ class And(Sentence):
         return
     
     def __eq__(self, other):
-        return (isinstance(other, And)) and (self.conjunct == other.conjuncts)
+        return (isinstance(other, And)) and (self.conjuncts == other.conjuncts)
     
     def __hash__(self):
         return hash(("and", tuple(hash(conjunct) for conjunct in self.conjuncts)))

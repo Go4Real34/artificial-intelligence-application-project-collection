@@ -17,7 +17,7 @@ class Sentence:
         
         return
     
-    def are_parantheses_balanced(sentence):
+    def are_parantheses_balanced(self, sentence):
         count = 0
         for character in sentence:
             if character == '(':
