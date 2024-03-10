@@ -4,9 +4,7 @@ class RAINY_DAY(Problemizer):
     def __init__(self):
         super().__init__()
         
-        self.rain = Symbol("Rain")
-        self.hagrid = Symbol("Hagrid")
-        self.dumbledore = Symbol("Dumbledore")
+        self.elements = ["Rain", "Hagrid", "Dumbledore"]
     
         self.operations = {
             1: "And",
@@ -19,11 +17,11 @@ class RAINY_DAY(Problemizer):
             8: "Clear Extra Added Operands"
         }
         
-        self.operands = {
-            1: ["Rain", self.rain],
-            2: ["Hagrid", self.hagrid],
-            3: ["Dumbledore", self.dumbledore]
-        }
+        self.operands = {}
+        for index, element in enumerate(self.elements):
+            self.operands.update({
+                index + 1: [element, Symbol(element)]
+            })
 
         return
     
@@ -110,7 +108,7 @@ class RAINY_DAY(Problemizer):
         print(f"\nCurrent Knowledge Base: " + (f"{self.knowledge.formula()}" if self.knowledge_length != 0 else "None"), end='\n' * 2)
         
         if self.knowledge_length != 0:
-            model = Modelizer(self.knowledge, self.rain)
+            model = Modelizer(self.knowledge, self.operands[1][1])
             is_knowledge_base_correct = model.check()
             if is_knowledge_base_correct:
                 print("Correct knowledge base acquired. Well done!")
