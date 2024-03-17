@@ -39,6 +39,14 @@
     <Compile Include="src\projects\logic_games\WHO_IS_THE_MURDERER.py" />
     <Compile Include="src\projects\turkish_banknotes_fraud_detection\SVM.py" />
     <Compile Include="src\projects\turkish_banknotes_fraud_detection\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\structures\for_fraud_detection\Dataset.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\structures\for_fraud_detection\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\structures\for_logic\Problemizer.py" />
     <Compile Include="src\structures\for_logic\Modelizer.py" />
     <Compile Include="src\projects\logic_games\__init__.py">
@@ -96,6 +104,7 @@
     <Folder Include="src\projects\" />
     <Folder Include="src\projects\turkish_banknotes_fraud_detection\" />
     <Folder Include="src\structures\" />
+    <Folder Include="src\structures\for_fraud_detection\" />
     <Folder Include="src\structures\for_logic\" />
     <Folder Include="src\structures\for_minimax\" />
     <Folder Include="src\structures\for_search\" />
