@@ -1,5 +1,3 @@
-from random import choice as random_choice
-
 class TicTacToe:
     def __init__(self):
         self.board = [

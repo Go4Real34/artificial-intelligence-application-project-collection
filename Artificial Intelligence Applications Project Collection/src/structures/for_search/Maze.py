@@ -1,7 +1,5 @@
-from shlex import join
-from PIL import Image, ImageDraw
-from os import makedirs as make_directories, remove as remove_file
-from os.path import exists as does_path_exist, join as join_paths
+import PIL
+import os
 
 class Maze:
     def __init__(self, file_name):
@@ -77,12 +75,12 @@ class Maze:
         cell_size = 50
         cell_border = 2
 
-        image = Image.new(
+        image = PIL.Image.new(
             "RGBA", 
             (self.width * cell_size, self.height * cell_size), 
             "black"
         )
-        draw = ImageDraw.Draw(image)
+        draw = PIL.ImageDraw.Draw(image)
         
         solution = self.solution[1] if self.solution is not None else None
         for r, row in enumerate(self.walls):
@@ -112,16 +110,16 @@ class Maze:
                 )
                 
         if (self.file_save_location is not None) or (self.explored_nodes is not None):
-            file_full_save_location = join_paths(
+            file_full_save_location = os.path.join(
                 self.file_save_location, 
                 self.file_name.split("\\")[-1].rstrip(".txt") + "_txt_with_" + used_algorithm_name + ".png"
             )
-            if does_path_exist(file_full_save_location):
-                remove_file(file_full_save_location)
+            if os.path.exists(file_full_save_location):
+                os.remove(file_full_save_location)
                 
             else:
-                if not does_path_exist(self.file_save_location):
-                    make_directories(self.file_save_location)
+                if not os.path.exists(self.file_save_location):
+                    os.makedirs(self.file_save_location)
                 
             image.save(file_full_save_location)
             print("Solution saved at:", file_full_save_location)

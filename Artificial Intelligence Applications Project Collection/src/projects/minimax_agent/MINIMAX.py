@@ -24,9 +24,9 @@ class MINIMAX:
         for move in game.available_moves:
             game_copy = self.copy_game(game)
             game_copy.next_turn(move)
-            score, _ = self.minimax(game_copy, 'X' if player == 'O' else 'O')
+            best_score, best_move = self.minimax(game_copy, 'X' if player == 'O' else 'O')
             moves.append(move)
-            scores.append(score)
+            scores.append(best_score)
 
         if player == 'O':
             best_score_index = scores.index(max(scores))

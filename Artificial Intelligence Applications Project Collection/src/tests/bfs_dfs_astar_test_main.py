@@ -1,13 +1,12 @@
-from os import getcwd as get_current_working_directory, listdir as list_directory
-from os.path import join as join_paths
+import os
 
 from ..structures import Maze
 from ..projects import BFS, DFS, ASTAR
 
 def bfs_dfs_astar_test():
-    cwd = get_current_working_directory()
-    mazes_folder = join_paths(cwd, 'src', 'tests', 'mazes')
-    current_mazes = list_directory(mazes_folder)
+    cwd = os.getcwd()
+    mazes_folder = os.path.join(cwd, "src", "tests", "mazes")
+    current_mazes = os.listdir(mazes_folder)
     
     print("Current Mazes:\n")
     for i, maze in enumerate([maze for maze in current_mazes if maze.endswith(".txt")]):
@@ -19,7 +18,8 @@ def bfs_dfs_astar_test():
     try:
         if 0 < int(maze_index) <= len(current_mazes) + 1:
             maze_file_name = current_mazes[int(maze_index) - 1]
-            maze = Maze(join_paths(mazes_folder, maze_file_name))
+            maze_file_path = os.path.join(mazes_folder, maze_file_name)
+            maze = Maze(maze_file_path)
             print("[1] - BFS (Breadth First Search)")
             print("[2] - DFS (Depth First Search)")
             print("[3] - A* (A Star)")
@@ -53,7 +53,7 @@ def bfs_dfs_astar_test():
                     print("\nSolution:")
                     maze.print_maze()
                     
-                    maze.set_file_save_location(join_paths(mazes_folder, "solutions", maze_file_name.rstrip(".txt")))
+                    maze.set_file_save_location(os.path.join(mazes_folder, "solutions", maze_file_name.rstrip(".txt")))
                     maze.save_maze_solution_as_file(algorithm_name)
                         
                 else:
