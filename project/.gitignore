@@ -1,3 +1,6 @@
+# Project Dependent Files and Folders
+src/tests/dataset/*.pkl
+
 # Visual Studio .gitignore Template: https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 ## Ignore Visual Studio temporary files, build results, and

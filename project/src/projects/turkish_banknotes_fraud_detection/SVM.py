@@ -7,9 +7,24 @@ import threading
 from ...structures import DatasetHandler, TimerHandler
 
 class SVM:
-    def __init__(self, dataset_path, model_save_path, resized_image_size, image_color_channel_count, test_ratio, print_update_time):
+    def __init__(self, dataset_path, model_save_folder_path, model_file_name, resized_image_size, image_color_channel_count, test_ratio, print_update_time):
+        self.is_model_suitable = False
+        
         self.dataset_path = dataset_path
-        self.model_save_path = model_save_path
+        if not os.path.exists(self.dataset_path):
+            os.makedirs(self.dataset_path)
+            
+            print("Please, either;")
+            print("\tDownload the dataset from the Kaggle and extract to the location 'src/tests/dataset/': https://www.kaggle.com/datasets/baltacifatih/turkish-lira-banknote-dataset or,")
+            print("\tClone or download the repository again from the project GitHub page: https://github.com/Go4Real34/artificial-intelligence-application-project-collection")
+            return
+            
+        else:
+            self.is_model_suitable = True
+            
+        self.model_save_folder_path = model_save_folder_path
+        self.model_file_name = model_file_name
+        self.model_save_path = os.path.join(self.model_save_folder_path, self.model_file_name)
         
         self.IMAGE_SIZE = resized_image_size
         self.IMAGE_COLOR_CHANNEL_COUNT = image_color_channel_count
@@ -24,6 +39,10 @@ class SVM:
         return
     
     def train(self):
+        if not self.is_model_suitable:
+            print("Model is not suitable for training. Please check the error messages above.")
+            return
+        
         if self.check_for_model(True):
             self.timer.is_model_main_thread_finished = True
             return
@@ -40,6 +59,10 @@ class SVM:
         return
     
     def test(self):
+        if not self.is_model_suitable:
+            print("Model is not suitable for testing. Please check the error messages above.")
+            return
+        
         if self.check_for_model(False):
             self.timer.is_model_main_thread_finished = True
             return
@@ -63,6 +86,9 @@ class SVM:
         self.timer.is_model_main_thread_finished = True
         print("\nModel training finished.")
         
+        if not os.path.exists(self.model_save_folder_path):
+            os.makedirs(self.model_save_folder_path)
+            
         with open(self.model_save_path, "wb") as file:
             pickle.dump(self.model, file)
             
