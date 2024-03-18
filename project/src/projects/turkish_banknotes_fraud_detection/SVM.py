@@ -3,9 +3,8 @@ import sklearn.metrics
 import pickle
 import os
 import threading
-import time
 
-from ...structures import DatasetHandler
+from ...structures import DatasetHandler, TimerHandler
 
 class SVM:
     def __init__(self, dataset_path, model_save_path, resized_image_size, image_color_channel_count, test_ratio, print_update_time):
@@ -19,22 +18,17 @@ class SVM:
         self.dataset = DatasetHandler(self.dataset_path, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, self.TEST_RATIO)
         self.model = sklearn.svm.SVC(kernel='rbf')
         
-        self.is_model_main_thread_finished = False
-        
-        self.HOURS_TO_MINUTES = 60
-        self.MINUTES_TO_SECONDS = 60
-        self.HOURS_TO_SECONDS = self.HOURS_TO_MINUTES * self.MINUTES_TO_SECONDS
-        
         self.PRINT_UPDATE_TIME = print_update_time
+        self.timer = TimerHandler(False, self.PRINT_UPDATE_TIME)
         
         return
     
     def train(self):
-        if self.is_model_main_thread_finished:
-            self.is_model_main_thread_finished = False
+        if self.timer.is_model_main_thread_finished:
+            self.timer.is_model_main_thread_finished = False
             
         train_thread = threading.Thread(target=self.train_model)
-        time_thread = threading.Thread(target=self.print_elapsed_time, kwargs={ 'is_training': True })
+        time_thread = threading.Thread(target=self.timer.print_elapsed_time, kwargs={ 'is_training': True })
         
         train_thread.start()
         time_thread.start()
@@ -43,11 +37,11 @@ class SVM:
         return
     
     def test(self):
-        if self.is_model_main_thread_finished:
-            self.is_model_main_thread_finished = False
+        if self.timer.is_model_main_thread_finished:
+            self.timer.is_model_main_thread_finished = False
             
         test_thread = threading.Thread(target=self.test_model)
-        time_thread = threading.Thread(target=self.print_elapsed_time, kwargs={ 'is_training': False })
+        time_thread = threading.Thread(target=self.timer.print_elapsed_time, kwargs={ 'is_training': False })
         
         test_thread.start()
         time_thread.start()
@@ -59,13 +53,15 @@ class SVM:
         if self.check_for_model(True):
             return
 
-        if self.is_model_main_thread_finished:
-            self.is_model_main_thread_finished = False
+        if self.timer.is_model_main_thread_finished:
+            self.timer.is_model_main_thread_finished = False
             
         print("\nModel training started.")
+        print("Please wait while the model is being trained.")
+        print("The time needed is dependent on your computer's hardware.")
         self.model.fit(self.dataset.X_train, self.dataset.Y_train)
-        self.is_model_main_thread_finished = True
-        print("Model training finished.")
+        self.timer.is_model_main_thread_finished = True
+        print("\nModel training finished.")
         
         with open(self.model_save_path, "wb") as file:
             pickle.dump(self.model, file)
@@ -78,14 +74,18 @@ class SVM:
         if self.check_for_model(False):
             return
         
-        if self.is_model_main_thread_finished:
-            self.is_model_main_thread_finished = False
+        if self.timer.is_model_main_thread_finished:
+            self.timer.is_model_main_thread_finished = False
             
         print("\nModel testing started.")
+        print("Please wait while the model is being trained.")
+        print("The time needed is dependent on your computer's hardware.")
         predictions = self.model.predict(self.dataset.X_test)
         accuracy = sklearn.metrics.accuracy_score(self.dataset.Y_test, predictions)
-        self.is_model_main_thread_finished = True
-        print(f"Model testing finished. Accuracy: {round((accuracy * 100), 2)}%")
+        self.timer.is_model_main_thread_finished = True
+        print(f"\nModel testing finished.")
+        
+        print(f"Accuracy: {round((accuracy * 100), 2)}%")
         
         return
     
@@ -93,7 +93,7 @@ class SVM:
         if os.path.exists(self.model_save_path):
             overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
             if overwrite_confirm != 'Y':
-                self.is_model_main_thread_finished = True
+                self.timer.is_model_main_thread_finished = True
                 
                 with open(self.model_save_path, 'rb') as file:
                     self.model = pickle.load(file)
@@ -108,48 +108,4 @@ class SVM:
                 print("No trained model found. Cannot test the model.")
                 
             return False
-        
-    def print_elapsed_time(self, is_training):
-        maximum_print_size = 0
-    
-        start_time = time.perf_counter()
-        while not self.is_model_main_thread_finished:
-            elapsed_time = time.perf_counter() - start_time
-        
-            if is_training:
-                text_to_print = f"Model has been training for {self.format_time(elapsed_time)}."
-            
-            else:
-                text_to_print = f"Model has been testing for {self.format_time(elapsed_time)}."
-            
-            length_of_text = len(text_to_print)
-            print(text_to_print, " " * (maximum_print_size - length_of_text), end='\r')
-            if length_of_text > maximum_print_size:
-                maximum_print_size = length_of_text
-        
-            time.sleep(self.PRINT_UPDATE_TIME)
-        
-        return
-
-    def format_time(self, time_in_s):
-        hours, seconds = divmod(time_in_s, self.HOURS_TO_SECONDS)
-        minutes, seconds = divmod(time_in_s, self.MINUTES_TO_SECONDS)
-    
-        hours = int(hours)
-        minutes = int(minutes)
-        seconds = int(seconds)
-    
-        formatted_time = ""
-        if hours == 0 and minutes == 0 and seconds == 0:
-            formatted_time = "0s"
-    
-        else:
-            if hours > 0:
-                formatted_time += f"{hours}h "
-            if minutes > 0:
-                formatted_time += f"{minutes}m "
-            if seconds > 0:
-                formatted_time += f"{seconds}s "
-            
-        return formatted_time.lstrip().rstrip()
     

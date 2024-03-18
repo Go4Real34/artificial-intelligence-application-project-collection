@@ -40,7 +40,6 @@ class DatasetHandler:
                 
                     image_path = os.path.join(directory_name, file_name)
                     image_name = '/'.join(image_path.split('\\')[-3:])
-                    progress_bar.desc = f"Importing Images ({image_name})"
                     
                     image = cv2.imread(image_path)
                     resized_image = cv2.resize(image, (self.IMAGE_SIZE, self.IMAGE_SIZE))
@@ -51,6 +50,7 @@ class DatasetHandler:
                     images.append(flattened_image)
                     labels.append(label)
                     
+                    progress_bar.desc = f"Importing Images... ({image_name})"
                     progress_bar.update(1)
                     
             return images, labels
