@@ -3,7 +3,7 @@ import cv2
 import sklearn
 
 class Dataset:
-    def __init__(self, dataset_path, resized_image_size, image_color_channel_count):
+    def __init__(self, dataset_path, resized_image_size, image_color_channel_count, test_ratio):
         self.dataset_path = dataset_path
         self.dataset_size = self.get_dataset_image_count()
         
@@ -11,7 +11,7 @@ class Dataset:
         self.IMAGE_COLOR_COUNT = image_color_channel_count
         self.images, self.labels = self.save_images_and_labels()
         
-        self.TEST_RATIO = 0.25
+        self.TEST_RATIO = test_ratio
         self.X_train, self.X_test, self.Y_train, self.Y_test = self.split_images()
         
         return
