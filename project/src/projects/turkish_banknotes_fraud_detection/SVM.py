@@ -19,13 +19,16 @@ class SVM:
         self.model = sklearn.svm.SVC(kernel='rbf')
         
         self.PRINT_UPDATE_TIME = print_update_time
-        self.timer = TimerHandler(False, self.PRINT_UPDATE_TIME)
+        self.timer = TimerHandler(True, self.PRINT_UPDATE_TIME)
         
         return
     
     def train(self):
-        if self.timer.is_model_main_thread_finished:
-            self.timer.is_model_main_thread_finished = False
+        if self.check_for_model(True):
+            self.timer.is_model_main_thread_finished = True
+            return
+        
+        self.timer.is_model_main_thread_finished = False
             
         train_thread = threading.Thread(target=self.train_model)
         time_thread = threading.Thread(target=self.timer.print_elapsed_time, kwargs={ 'is_training': True })
@@ -37,8 +40,11 @@ class SVM:
         return
     
     def test(self):
-        if self.timer.is_model_main_thread_finished:
-            self.timer.is_model_main_thread_finished = False
+        if self.check_for_model(False):
+            self.timer.is_model_main_thread_finished = True
+            return
+        
+        self.timer.is_model_main_thread_finished = False
             
         test_thread = threading.Thread(target=self.test_model)
         time_thread = threading.Thread(target=self.timer.print_elapsed_time, kwargs={ 'is_training': False })
@@ -50,12 +56,6 @@ class SVM:
         return
     
     def train_model(self):
-        if self.check_for_model(True):
-            return
-
-        if self.timer.is_model_main_thread_finished:
-            self.timer.is_model_main_thread_finished = False
-            
         print("\nModel training started.")
         print("Please wait while the model is being trained.")
         print("The time needed is dependent on your computer's hardware.")
@@ -71,12 +71,6 @@ class SVM:
         return
     
     def test_model(self):
-        if self.check_for_model(False):
-            return
-        
-        if self.timer.is_model_main_thread_finished:
-            self.timer.is_model_main_thread_finished = False
-            
         print("\nModel testing started.")
         print("Please wait while the model is being trained.")
         print("The time needed is dependent on your computer's hardware.")
@@ -90,22 +84,32 @@ class SVM:
         return
     
     def check_for_model(self, is_training):
-        if os.path.exists(self.model_save_path):
-            overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
-            if overwrite_confirm != 'Y':
-                self.timer.is_model_main_thread_finished = True
+        if is_training:
+            if os.path.exists(self.model_save_path):
+                overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
+                if overwrite_confirm != 'Y':
+                    self.timer.is_model_main_thread_finished = True
                 
-                with open(self.model_save_path, 'rb') as file:
-                    self.model = pickle.load(file)
+                    with open(self.model_save_path, "rb") as file:
+                        self.model = pickle.load(file)
                     
-                return True
-            
-            else:
-                return False
-            
-        else:
-            if not is_training:
-                print("No trained model found. Cannot test the model.")
+                    return True
                 
-            return False
+                else:
+                    os.remove(self.model_save_path)
+                    self.timer.is_model_main_thread_finished = False
+                    return False
+                
+        else:
+            if os.path.exists(self.model_save_path):
+                with open(self.model_save_path, "rb") as file:
+                    self.timer.is_model_main_thread_finished = False
+                    
+                    self.model = pickle.load(file)
+                    return False
+                
+            else:
+                print("No trained model found. Please train the model first.")
+                self.timer.is_model_main_thread_finished = True
+                return True
     
