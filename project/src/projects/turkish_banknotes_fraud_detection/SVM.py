@@ -56,15 +56,8 @@ class SVM:
         return
     
     def train_model(self):
-        if os.path.exists(self.model_save_path):
-            overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
-            if overwrite_confirm != 'Y':
-                self.is_model_main_thread_finished = True
-                
-                with open(self.model_save_path, 'rb') as file:
-                    self.model = pickle.load(file)
-                    
-                return
+        if self.check_for_model(True):
+            return
 
         if self.is_model_main_thread_finished:
             self.is_model_main_thread_finished = False
@@ -82,9 +75,7 @@ class SVM:
         return
     
     def test_model(self):
-        if not os.path.exists(self.model_save_path):
-            self.is_model_main_thread_finished = True
-            print("No trained model found. Model testing is not possible.")
+        if self.check_for_model(False):
             return
         
         if self.is_model_main_thread_finished:
@@ -98,6 +89,26 @@ class SVM:
         
         return
     
+    def check_for_model(self, is_training):
+        if os.path.exists(self.model_save_path):
+            overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
+            if overwrite_confirm != 'Y':
+                self.is_model_main_thread_finished = True
+                
+                with open(self.model_save_path, 'rb') as file:
+                    self.model = pickle.load(file)
+                    
+                return True
+            
+            else:
+                return False
+            
+        else:
+            if not is_training:
+                print("No trained model found. Cannot test the model.")
+                
+            return False
+        
     def print_elapsed_time(self, is_training):
         maximum_print_size = 0
     
