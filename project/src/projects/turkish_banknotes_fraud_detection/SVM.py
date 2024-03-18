@@ -42,6 +42,19 @@ class SVM:
         
         return
     
+    def test(self):
+        if self.is_model_main_thread_finished:
+            self.is_model_main_thread_finished = False
+            
+        test_thread = threading.Thread(target=self.test_model)
+        time_thread = threading.Thread(target=self.print_elapsed_time, kwargs={ 'is_training': False })
+        
+        test_thread.start()
+        time_thread.start()
+        time_thread.join()
+        
+        return
+    
     def train_model(self):
         if os.path.exists(self.model_save_path):
             overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
@@ -70,12 +83,17 @@ class SVM:
     
     def test_model(self):
         if not os.path.exists(self.model_save_path):
+            self.is_model_main_thread_finished = True
             print("No trained model found. Model testing is not possible.")
             return
         
+        if self.is_model_main_thread_finished:
+            self.is_model_main_thread_finished = False
+            
         print("\nModel testing started.")
         predictions = self.model.predict(self.dataset.X_test)
         accuracy = sklearn.metrics.accuracy_score(self.dataset.Y_test, predictions)
+        self.is_model_main_thread_finished = True
         print(f"Model testing finished. Accuracy: {round((accuracy * 100), 2)}%")
         
         return
