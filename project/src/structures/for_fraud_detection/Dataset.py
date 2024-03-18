@@ -1,6 +1,7 @@
 import os
 import cv2
 import sklearn
+import tqdm
 
 class Dataset:
     def __init__(self, dataset_path, resized_image_size, image_color_channel_count, test_ratio):
@@ -16,23 +17,6 @@ class Dataset:
         
         return
     
-
-    def print_importing_progress(self, image_path, current_image_count, maximum_print_size, end):
-        image_path_split = image_path.split("\\")[-3:]
-        image_path_text = '/'.join(image_path_split)
-        
-        text_to_print = f"Importing images: {image_path_text}, {current_image_count}/{self.dataset_size} ({round(((current_image_count / self.dataset_size) * 100), 2)}%)."
-        length_of_text = len(text_to_print)
-        print(text_to_print, " " * (maximum_print_size - length_of_text), end='\r')
-        if length_of_text > maximum_print_size:
-            maximum_print_size = length_of_text
-            
-        if end:
-            print(f"Images imported: {self.dataset_size}/{self.dataset_size} (100.00%).")
-            
-        return maximum_print_size
-    
-
     def get_dataset_image_count(self):
         image_count = 0
         for directory_name, directory_names, file_names in os.walk(self.dataset_path):
@@ -43,36 +27,33 @@ class Dataset:
                 image_count += 1
                 
         return image_count
-    
 
     def save_images_and_labels(self):
         images = []
         labels = []
-        maximum_printed_text_size = 0
-        image_count = 0
-        for directory_name, directory_names, file_names in os.walk(self.dataset_path):
-            for file_name in file_names:
-                if file_name.endswith(".pkl"):
-                    continue
+        
+        with tqdm.tqdm(desc="Importing Images", unit=" images", total=self.dataset_size) as progress_bar:
+            for directory_name, directory_names, file_names in os.walk(self.dataset_path):
+                for file_name in file_names:
+                    if file_name.endswith(".pkl"):
+                        continue
                 
-                image_path = os.path.join(directory_name, file_name)
-                
-                image = cv2.imread(image_path)
-                resized_image = cv2.resize(image, (self.IMAGE_SIZE, self.IMAGE_SIZE))
-                normalized_image = resized_image / 255.0
-                flattened_image = normalized_image.reshape(self.IMAGE_SIZE * self.IMAGE_SIZE * self.IMAGE_COLOR_COUNT)
-                
-                label = str(os.path.join(directory_name, file_name)).split('\\')[-2]
-                
-                images.append(flattened_image)
-                labels.append(label)
-                image_count += 1
-                
-                maximum_printed_text_size = self.print_importing_progress(image_path, image_count, maximum_printed_text_size, False)
-                
-        maximum_printed_text_size = self.print_importing_progress(image_path, image_count, maximum_printed_text_size, True)
-                
-        return images, labels
+                    image_path = os.path.join(directory_name, file_name)
+                    image_name = '/'.join(image_path.split('\\')[-3:])
+                    progress_bar.desc = f"Importing Images ({image_name})"
+                    
+                    image = cv2.imread(image_path)
+                    resized_image = cv2.resize(image, (self.IMAGE_SIZE, self.IMAGE_SIZE))
+                    normalized_image = resized_image / 255.0
+                    flattened_image = normalized_image.reshape(self.IMAGE_SIZE * self.IMAGE_SIZE * self.IMAGE_COLOR_COUNT)
+                    
+                    label = str(os.path.join(directory_name, file_name)).split('\\')[-2]
+                    images.append(flattened_image)
+                    labels.append(label)
+                    
+                    progress_bar.update(1)
+                    
+            return images, labels
     
 
     def split_images(self):
