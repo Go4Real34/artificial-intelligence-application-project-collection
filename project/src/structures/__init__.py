@@ -16,3 +16,4 @@ from .for_logic import Modelizer
 from .for_logic import Problemizer
 
 from .for_fraud_detection import Dataset
+from .for_fraud_detection import TimerHandler
