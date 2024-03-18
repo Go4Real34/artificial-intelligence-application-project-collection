@@ -1,2 +1,2 @@
-from .Dataset import Dataset
+from .DatasetHandler import DatasetHandler
 from .TimerHandler import TimerHandler

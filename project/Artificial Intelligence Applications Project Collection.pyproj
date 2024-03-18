@@ -41,7 +41,7 @@
     <Compile Include="src\projects\turkish_banknotes_fraud_detection\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="src\structures\for_fraud_detection\Dataset.py">
+    <Compile Include="src\structures\for_fraud_detection\DatasetHandler.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="src\structures\for_fraud_detection\TimerHandler.py">

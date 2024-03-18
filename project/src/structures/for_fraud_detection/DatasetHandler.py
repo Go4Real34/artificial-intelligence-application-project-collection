@@ -3,7 +3,7 @@ import cv2
 import sklearn
 import tqdm
 
-class Dataset:
+class DatasetHandler:
     def __init__(self, dataset_path, resized_image_size, image_color_channel_count, test_ratio):
         self.dataset_path = dataset_path
         self.dataset_size = self.get_dataset_image_count()
@@ -32,7 +32,7 @@ class Dataset:
         images = []
         labels = []
         
-        with tqdm.tqdm(desc="Importing Images", unit=" images", total=self.dataset_size) as progress_bar:
+        with tqdm.tqdm(desc="Importing Images...", unit=" images", total=self.dataset_size) as progress_bar:
             for directory_name, directory_names, file_names in os.walk(self.dataset_path):
                 for file_name in file_names:
                     if file_name.endswith(".pkl"):

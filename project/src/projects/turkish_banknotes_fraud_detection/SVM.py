@@ -5,7 +5,7 @@ import os
 import threading
 import time
 
-from ...structures import Dataset
+from ...structures import DatasetHandler
 
 class SVM:
     def __init__(self, dataset_path, model_save_path, resized_image_size, image_color_channel_count, test_ratio, print_update_time):
@@ -16,7 +16,7 @@ class SVM:
         self.IMAGE_COLOR_CHANNEL_COUNT = image_color_channel_count
         self.TEST_RATIO = test_ratio
         
-        self.dataset = Dataset(self.dataset_path, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, self.TEST_RATIO)
+        self.dataset = DatasetHandler(self.dataset_path, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, self.TEST_RATIO)
         self.model = sklearn.svm.SVC(kernel='rbf')
         
         self.is_model_main_thread_finished = False
