@@ -11,3 +11,4 @@ from .logic_games import MASTERMIND
 
 from .turkish_banknotes_fraud_detection import SVM
 from .turkish_banknotes_fraud_detection import KNN
+from .turkish_banknotes_fraud_detection import PERCEPTRON

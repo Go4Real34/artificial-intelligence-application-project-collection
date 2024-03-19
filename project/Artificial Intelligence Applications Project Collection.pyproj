@@ -40,6 +40,9 @@
     <Compile Include="src\projects\turkish_banknotes_fraud_detection\KNN.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\projects\turkish_banknotes_fraud_detection\PERCEPTRON.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\projects\turkish_banknotes_fraud_detection\SVM.py" />
     <Compile Include="src\projects\turkish_banknotes_fraud_detection\__init__.py">
       <SubType>Code</SubType>
