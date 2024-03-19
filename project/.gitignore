@@ -1,5 +1,8 @@
 # Project Dependent Files and Folders
-src/tests/dataset/*.pkl
+src/tests/dataset/svm_model.pkl
+src/tests/dataset/knn_model.pkl
+src/tests/dataset/perceptron_model.pkl
+
 
 # Visual Studio .gitignore Template: https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
