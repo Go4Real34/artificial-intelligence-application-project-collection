@@ -29,7 +29,7 @@ class ModelHandler:
         
         return
     
-    def test(self):
+    def test(self, user_image_path):
         if not self.is_model_suitable:
             print("Model is not suitable for testing. Please check the error messages above.")
             return
@@ -39,8 +39,14 @@ class ModelHandler:
             return
         
         self.timer.is_model_main_thread_finished = False
+        
+        if user_image_path is not None:
+            user_image = self.dataset.process_image(user_image_path, True)
+            test_thread = threading.Thread(target=self.test_user_image, kwargs={ 'user_image': user_image })
             
-        test_thread = threading.Thread(target=self.test_model)
+        else:
+            test_thread = threading.Thread(target=self.test_model)
+            
         time_thread = threading.Thread(target=self.timer.print_elapsed_time, kwargs={ 'is_training': False })
         
         test_thread.start()
@@ -49,7 +55,37 @@ class ModelHandler:
         
         return
     
+    def test_user_image(self, user_image):
+        print("\nModel testing started.")
+        print("Please wait while the model is being trained.")
+        print("The time needed is dependent on your computer's hardware.")
+        predictions = self.model.predict(user_image)
+        self.timer.is_model_main_thread_finished = True
+        print(f"\nModel testing finished.")
+        
+        prediction_text = "\nModel predicted this image as the "
+        if len(predictions) > 1:
+            prediction_text += "classes of "
+            for index, prediction in enumerate(predictions):
+                if index == len(predictions) - 1:
+                    prediction_text = prediction_text.rstrip(", ") + " and "
+                    
+                prediction_text += (prediction + "TL, ")
+                
+            prediction_text = prediction_text.rstrip(", ") + '.'
+                
+        else:
+            prediction_text += ("class of " + predictions[0] + "TL.")
+            
+        print(prediction_text)
+        
+        return
+    
     def train_model(self):
+        if not self.is_model_suitable:
+            print("Model is not suitable for training. Please check the error messages above.")
+            return
+        
         print("\nModel training started.")
         print("Please wait while the model is being trained.")
         print("The time needed is dependent on your computer's hardware.")
@@ -68,6 +104,10 @@ class ModelHandler:
         return
     
     def test_model(self):
+        if not self.is_model_suitable:
+            print("Model is not suitable for training. Please check the error messages above.")
+            return
+        
         print("\nModel testing started.")
         print("Please wait while the model is being trained.")
         print("The time needed is dependent on your computer's hardware.")
@@ -81,6 +121,10 @@ class ModelHandler:
         return
     
     def check_for_model(self, is_training):
+        if not self.is_model_suitable:
+            print("Model is not suitable for training. Please check the error messages above.")
+            return
+        
         if is_training:
             if os.path.exists(self.model_save_path):
                 overwrite_confirm = input("An already trained model is found. Do you want to retrain the model? (Y/N):").upper().rstrip().lstrip()
