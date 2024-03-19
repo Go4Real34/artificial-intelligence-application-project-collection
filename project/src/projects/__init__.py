@@ -10,3 +10,4 @@ from .logic_games import WHO_IS_THE_MURDERER
 from .logic_games import MASTERMIND
 
 from .turkish_banknotes_fraud_detection import SVM
+from .turkish_banknotes_fraud_detection import KNN
