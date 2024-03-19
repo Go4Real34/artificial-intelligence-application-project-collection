@@ -47,6 +47,9 @@
     <Compile Include="src\structures\for_fraud_detection\DatasetHandler.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="src\structures\for_fraud_detection\ModelHandler.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="src\structures\for_fraud_detection\TimerHandler.py">
       <SubType>Code</SubType>
     </Compile>
