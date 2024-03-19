@@ -104,6 +104,7 @@
     <Compile Include="src\tests\bfs_dfs_astar_test_main.py" />
     <Compile Include="src\tests\logic_games_test_main.py" />
     <Compile Include="src\tests\minimax_agent_test_main.py" />
+    <Compile Include="src\tests\turkish_banksnotes_fraud_detection_test_main.py" />
     <Compile Include="src\tests\__init__.py">
       <SubType>Code</SubType>
     </Compile>

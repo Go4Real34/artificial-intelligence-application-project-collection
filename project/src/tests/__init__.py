@@ -1,3 +1,4 @@
 from .bfs_dfs_astar_test_main import bfs_dfs_astar_test
 from .minimax_agent_test_main import minimax_agent_test
 from .logic_games_test_main import logic_games_test
+from .turkish_banksnotes_fraud_detection_test_main import turkish_banksnotes_fraud_detection_test
