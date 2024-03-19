@@ -1,19 +1,24 @@
 from ..projects import RAINY_DAY, HOGWARTS_HOUSES, WHO_IS_THE_MURDERER, MASTERMIND
 
 def logic_games_test():
-    print("Available Logic Games: ")
+    print("Available Logic Games:")
     
-    print("[1] - Rainy Day")
-    print("[2] - Hogwart's Houses")
-    print("[3] - Who Is The Murderer?")
-    print("[4] - Mastermind")
+    logic_games = [
+        "[1] - Rainy Day",
+        "[2] - Hogwart's Houses",
+        "[3] - Who Is The Murderer?",
+        "[4] - Mastermind"
+    ]
     
+    for logic_game in logic_games:
+        print(logic_game)
+        
     game_index = input("\nWhich logic game do you want to play?: ")
     print()
     
     try:
         selected_index = int(game_index)
-        if 0 < selected_index <= 4:
+        if 0 < selected_index <= len(logic_games):
             if selected_index == 1:
                 rainy_day_game = RAINY_DAY()
                 rainy_day_game.play()

@@ -20,15 +20,21 @@ def bfs_dfs_astar_test():
             maze_file_name = current_mazes[int(maze_index) - 1]
             maze_file_path = os.path.join(mazes_folder, maze_file_name)
             maze = Maze(maze_file_path)
-            print("[1] - BFS (Breadth First Search)")
-            print("[2] - DFS (Depth First Search)")
-            print("[3] - A* (A Star)")
             
+            algorithms = [
+                "[1] - BFS (Breadth First Search)",
+                "[2] - DFS (Depth First Search)",
+                "[3] - A* (A Star)"
+            ]
+            
+            for algorithm in algorithms:
+                print(algorithm)
+                
             algorithm_index = input("\nWhich algorithm do you want to use?: ")
             try:
                 algorithm = None
                 algorithm_name = None
-                if 0 < int(algorithm_index) <= 3:
+                if 0 < int(algorithm_index) <= len(algorithms):
                     if int(algorithm_index) == 1:
                         algorithm = BFS(maze)
                         algorithm_name = "bfs"
