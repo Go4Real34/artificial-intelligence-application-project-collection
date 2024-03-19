@@ -1,6 +1,7 @@
 from src.tests import bfs_dfs_astar_test
 from src.tests import minimax_agent_test
 from src.tests import logic_games_test
+from src.tests import turkish_banksnotes_fraud_detection_test
 
 def main():
     print("Available Tests:\n")
@@ -8,7 +9,8 @@ def main():
     tests = [
         "[1] - BFS, DFS, ASTAR Maze Solver", 
         "[2] - Tic Tac Toe Minimaxer",
-        "[3] - Logic Games"
+        "[3] - Logic Games",
+        "[4] - Turkish Banknotes Fraud Detection"
     ]
     
     for test in tests:
@@ -29,6 +31,9 @@ def main():
                 
             elif selected_index == 3:
                 logic_games_test()
+                
+            elif selected_index == 4:
+                turkish_banksnotes_fraud_detection_test()
                 
         else:
             print("Invalid index on test selection.")
