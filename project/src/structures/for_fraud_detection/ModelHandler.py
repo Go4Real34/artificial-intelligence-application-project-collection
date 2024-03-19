@@ -70,12 +70,12 @@ class ModelHandler:
                 if index == len(predictions) - 1:
                     prediction_text = prediction_text.rstrip(", ") + " and "
                     
-                prediction_text += (prediction + "TL, ")
+                prediction_text += f"'{prediction} TL', "
                 
             prediction_text = prediction_text.rstrip(", ") + '.'
                 
         else:
-            prediction_text += ("class of " + predictions[0] + "TL.")
+            prediction_text += ("class of '" + predictions[0] + "TL'.")
             
         print(prediction_text)
         
@@ -153,4 +153,51 @@ class ModelHandler:
                 print("No trained model found. Please train the model first.")
                 self.timer.is_model_main_thread_finished = True
                 return True
+            
+    def check_dataset_folders(self):
+        if not os.path.exists(self.dataset_path):
+            self.warn_about_dataset(True, None)
+            return False
+        
+        else:
+            dataset_must_have_folders = ["5", "10", "20", "50", "100", "200"]
+            contents = os.listdir(self.dataset_path)
+            missing_folders = []
+            
+            for folder in dataset_must_have_folders:
+                if folder not in contents:
+                    missing_folders.append(folder)
+                    
+            if len(missing_folders) > 0:
+                self.warn_about_dataset(False, missing_folders)
+                return False
+            
+            else:
+                return True
+            
+    def warn_about_dataset(self, is_dataset_completely_missing, missing_folders):
+        if is_dataset_completely_missing:
+            print("Dataset is completely missing.")
+        
+        else:
+            missing_folders_text = ""
+            if len(missing_folders) > 1:
+                missing_folders_text = "Folders; "
+                for index, missing_folder in enumerate(missing_folders):
+                    if index == len(missing_folders) - 1:
+                        missing_folders_text = missing_folders_text.rstrip(", ") + " and "
+                        
+                    missing_folders_text += f"'{missing_folder}', "
+                    
+                missing_folders_text = missing_folders_text.rstrip(", ") + " are missing."
+                
+            else:
+                missing_folders_text = f"Folder; '{missing_folders[0]}' is missing."
+                
+            print(missing_folders_text)
+        
+        print("Please, either;")
+        print("\tDownload the dataset from the Kaggle and extract to the location 'src/tests/dataset/': https://www.kaggle.com/datasets/baltacifatih/turkish-lira-banknote-dataset or,")
+        print("\tClone or download the repository again from the project GitHub page: https://github.com/Go4Real34/artificial-intelligence-application-project-collection")
+        return
     

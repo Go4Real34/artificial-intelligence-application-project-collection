@@ -8,17 +8,10 @@ class PERCEPTRON(ModelHandler):
         self.is_model_suitable = False
         
         self.dataset_path = dataset_path
-        if not os.path.exists(self.dataset_path):
-            os.makedirs(self.dataset_path)
-            
-            print("Please, either;")
-            print("\tDownload the dataset from the Kaggle and extract to the location 'src/tests/dataset/': https://www.kaggle.com/datasets/baltacifatih/turkish-lira-banknote-dataset or,")
-            print("\tClone or download the repository again from the project GitHub page: https://github.com/Go4Real34/artificial-intelligence-application-project-collection")
+        self.is_model_suitable = self.check_dataset_folders()
+        if not self.is_model_suitable:
             return
-            
-        else:
-            self.is_model_suitable = True
-            
+        
         self.model_save_folder_path = model_save_folder_path
         self.model_file_name = model_file_name
         self.model_save_path = os.path.join(self.model_save_folder_path, self.model_file_name)
