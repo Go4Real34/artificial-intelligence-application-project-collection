@@ -24,7 +24,7 @@ class DatasetHandler:
         return
     
     def get_dataset_image_count(self):
-        if not self.is_model_suitable:
+        if not self.is_dataset_suitable:
             print("Dataset is not suitable for model training or testing. Please use a specific dataset.")
             return
         
@@ -39,7 +39,7 @@ class DatasetHandler:
         return image_count
 
     def save_images_and_labels(self):
-        if not self.is_model_suitable:
+        if not self.is_dataset_suitable:
             print("Dataset is not suitable for model training or testing. Please use a specific dataset.")
             return
         
@@ -79,7 +79,7 @@ class DatasetHandler:
             return flattened_image
     
     def split_images(self):
-        if not self.is_model_suitable:
+        if not self.is_dataset_suitable:
             print("Dataset is not suitable for model training or testing. Please use a specific dataset.")
             return
         
