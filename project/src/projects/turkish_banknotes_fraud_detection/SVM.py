@@ -1,9 +1,9 @@
 import sklearn.svm
 import os
 
-from ...structures import ModelHandler, DatasetHandler, TimerHandler
+from ...structures import ModelHandlerTLBFD, DatasetHandlerTLBFD, TimerHandlerTLBFD
 
-class SVM(ModelHandler):
+class SVM(ModelHandlerTLBFD):
     def __init__(self, dataset_path, model_save_folder_path, model_file_name, should_load_from_dataset, resized_image_size, image_color_channel_count, test_ratio, print_update_time):
         self.is_model_suitable = False
         
@@ -21,15 +21,15 @@ class SVM(ModelHandler):
         self.TEST_RATIO = test_ratio
         
         if should_load_from_dataset:
-            self.dataset = DatasetHandler(self.dataset_path, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, self.TEST_RATIO)
+            self.dataset = DatasetHandlerTLBFD(self.dataset_path, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, self.TEST_RATIO)
             
         else:
-            self.dataset = DatasetHandler(None, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, None)
+            self.dataset = DatasetHandlerTLBFD(None, self.IMAGE_SIZE, self.IMAGE_COLOR_CHANNEL_COUNT, None)
             
         self.model = sklearn.svm.SVC(kernel='rbf')
         
         self.PRINT_UPDATE_TIME = print_update_time
-        self.timer = TimerHandler(True, self.PRINT_UPDATE_TIME)
+        self.timer = TimerHandlerTLBFD(True, self.PRINT_UPDATE_TIME)
         
         return
     

@@ -1,6 +1,6 @@
 import time
 
-class TimerHandler:
+class TimerHandlerTLBFD:
     def __init__(self, is_model_main_thread_finished, print_update_time):
         self.is_model_main_thread_finished = is_model_main_thread_finished
         self.PRINT_UPDATE_TIME =  print_update_time

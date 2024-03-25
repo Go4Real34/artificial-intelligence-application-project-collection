@@ -1,3 +1,3 @@
-from .DatasetHandler import DatasetHandler
-from .TimerHandler import TimerHandler
-from .ModelHandler import ModelHandler
+from .DatasetHandlerTLBFD import DatasetHandlerTLBFD
+from .TimerHandlerTLBFD import TimerHandlerTLBFD
+from .ModelHandlerTLBFD import ModelHandlerTLBFD

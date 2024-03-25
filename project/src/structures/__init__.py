@@ -15,8 +15,8 @@ from .for_logic import Biconditional
 from .for_logic import Modelizer
 from .for_logic import Problemizer
 
-from .for_fraud_detection import DatasetHandler
-from .for_fraud_detection import TimerHandler
-from .for_fraud_detection import ModelHandler
+from .for_fraud_detection import DatasetHandlerTLBFD
+from .for_fraud_detection import TimerHandlerTLBFD
+from .for_fraud_detection import ModelHandlerTLBFD
 
 from .for_handwriting_recognition import DatasetHandlerTHR

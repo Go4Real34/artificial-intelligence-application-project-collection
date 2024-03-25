@@ -3,7 +3,7 @@ import cv2
 import sklearn
 import tqdm
 
-class DatasetHandler:
+class DatasetHandlerTLBFD:
     def __init__(self, dataset_path, resized_image_size, image_color_channel_count, test_ratio):
         self.IMAGE_SIZE = resized_image_size
         self.IMAGE_COLOR_COUNT = image_color_channel_count

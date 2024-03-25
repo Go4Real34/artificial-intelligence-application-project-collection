@@ -3,7 +3,7 @@ import pickle
 import os
 import threading
 
-class ModelHandler:
+class ModelHandlerTLBFD:
     def __init__(self):
         self.is_model_suitable = False
         print("Model handler is not suitable for model training or testing. Please use a specific model.")
