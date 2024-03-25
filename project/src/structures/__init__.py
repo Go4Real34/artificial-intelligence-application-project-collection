@@ -18,3 +18,5 @@ from .for_logic import Problemizer
 from .for_fraud_detection import DatasetHandler
 from .for_fraud_detection import TimerHandler
 from .for_fraud_detection import ModelHandler
+
+from .for_handwriting_recognition import DatasetHandlerTHR
