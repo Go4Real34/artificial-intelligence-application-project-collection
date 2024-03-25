@@ -64,7 +64,7 @@ class DatasetHandler:
                     progress_bar.desc = f"Importing Images... ({image_name})"
                     progress_bar.update(1)
                     
-            return images, labels
+        return images, labels
     
     def process_image(self, image_path, is_user_image):
         image = cv2.imread(image_path)
