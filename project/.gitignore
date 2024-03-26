@@ -3,6 +3,8 @@ src/tests/dataset/svm_model.pkl
 src/tests/dataset/knn_model.pkl
 src/tests/dataset/perceptron_model.pkl
 
+src/tests/datasets/turkish_and_english_handwritten_characters_dataset/images/
+
 
 # Visual Studio .gitignore Template: https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
